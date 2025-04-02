@@ -1,0 +1,77 @@
+/* Background Styling */
+.partner-section {
+    background: linear-gradient(to right, #f8f9fa, #e3f2fd);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+  }
+  
+  /* Form Container (Centered) */
+  .partner-container {
+    /* max-width: 600px;  */
+    width: 100%;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+  }
+  
+  /* Headings */
+  .partner-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .partner-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-top: 10px;
+  }
+  
+  /* Form Inputs */
+  .form-control {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+  }
+  
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+  }
+  
+  /* Select Dropdown */
+  .form-select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    transition: 0.3s;
+  }
+  
+  .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+  }
+  
+  /* Submit Button */
+  .btn-primary {
+    background: #007bff;
+    border: none;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background: #0056b3;
+  }
+  

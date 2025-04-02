@@ -1,0 +1,86 @@
+.bg {
+    background-color: #017173 !important; /* Teal background color */
+}
+
+.navbar {
+    padding: 0.5rem 1rem;
+}
+
+/* Default link styles */
+.navbar-nav .nav-link,
+.navbar-brand {
+    color: white !important;
+    padding: 0.5rem 1rem;
+    font-size: 18px; /* Increased font size */
+    position: relative; /* For underline effect */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Underline effect */
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #e0f7f7; /* Lighter teal for underline */
+    transition: width 0.3s ease; /* Smooth width transition */
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%; /* Underline grows from left to right */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #e0f7f7 !important; /* Lighter teal on hover */
+}
+
+/* Navbar brand (logo container) */
+.navbar-brand img {
+    max-height: 70px;
+    width: auto;
+}
+
+/* Dropdown specific styles */
+.nav-dropdown-title {
+    color: white !important;
+    font-size: 18px; /* Match increased font size */
+}
+
+.dropdown-menu {
+    background-color: #017173;
+    border: none;
+}
+
+.dropdown-item {
+    color: white !important;
+    font-size: 16px; /* Slightly smaller for dropdown items */
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    color: #e0f7f7 !important;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Toggle button styling for mobile */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Ensure dropdown toggle arrow is white */
+.nav-dropdown-toggle::after {
+    border-top-color: white !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .navbar-nav .nav-link {
+        font-size: 16px; /* Slightly smaller on mobile */
+    }
+}

@@ -1,0 +1,73 @@
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: #f0f0f0;
+    padding: 5px 0;
+    border: 1px solid #e0e0e0;
+}
+
+.marquee {
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+}
+
+.marquee-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 20px; /* mx-5 equivalent */
+    background-color: #017173; /* WhatsApp green */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.marquee-btn:hover {
+    background-color: #20b956; /* Darker green on hover */
+    transform: scale(1.05);
+}
+
+.marquee-btn:active {
+    transform: scale(0.95);
+}
+
+/* Animation */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Optional hover effect for container */
+.marquee-container:hover {
+    background-color: #e6e6e6;
+}
+
+/* Gradient overlay */
+.marquee-container {
+    position: relative;
+}
+
+.marquee-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(240, 240, 240, 1) 0%,
+        rgba(240, 240, 240, 0) 20%,
+        rgba(240, 240, 240, 0) 80%,
+        rgba(240, 240, 240, 1) 100%
+    );
+    pointer-events: none;
+}
