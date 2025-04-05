@@ -18,7 +18,7 @@ const Marque = () => {
           className="marquee-btn mx-5"
           onClick={() => window.open(whatsappUrl, '_blank')}
         >
-          ⭐ For International Orders Click Me ⭐
+          ⭐ Deliver in 2 days ⭐
         </button>
         <button 
           className="marquee-btn mx-5"
@@ -30,7 +30,7 @@ const Marque = () => {
           className="marquee-btn mx-5"
           onClick={() => window.open(whatsappUrl, '_blank')}
         >
-          ⭐ For International Orders Click Me ⭐
+         ⭐ Deliver in 2 days ⭐
         </button>
         <button 
           className="marquee-btn mx-5"
@@ -42,7 +42,7 @@ const Marque = () => {
           className="marquee-btn mx-5"
           onClick={() => window.open(whatsappUrl, '_blank')}
         >
-          ⭐ For International Orders Click Me ⭐
+          ⭐ Deliver in 2 days ⭐
         </button>
         <button 
           className="marquee-btn mx-5"
@@ -54,7 +54,7 @@ const Marque = () => {
           className="marquee-btn mx-5"
           onClick={() => window.open(whatsappUrl, '_blank')}
         >
-          ⭐ For International Orders Click Me ⭐
+          ⭐ Deliver in 2 days ⭐
         </button>
         <button 
           className="marquee-btn mx-5"
@@ -66,7 +66,7 @@ const Marque = () => {
           className="marquee-btn mx-5"
           onClick={() => window.open(whatsappUrl, '_blank')}
         >
-          ⭐ For International Orders Click Me ⭐
+         ⭐ Deliver in 2 days ⭐
         </button>
         <button 
           className="marquee-btn mx-5"

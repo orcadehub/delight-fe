@@ -1,0 +1,135 @@
+.customise-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Left Side - Product List */
+.product-list {
+  width: 65%;
+}
+.product-list h2 {
+  color: white;
+  text-align: center;
+}
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.product-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 150px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+.product-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.quantity-controls button {
+  background: #017173;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.quantity-controls button:hover {
+  background: #015d5d;
+}
+
+/* Right Side - Selected Products */
+.selected-products {
+    width: 300px;
+    flex-shrink: 0; /* Prevent resizing */
+    position: sticky;
+    top: 20%; /* Stays fixed at top */
+    background: #fff;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    height: fit-content; /* Adjust height dynamically */
+  }
+
+.selected-products ul {
+  list-style: none;
+  padding: 0;
+}
+
+.selected-products li {
+  padding: 5px 0;
+}
+
+.buy-now {
+  width: 100%;
+  padding: 10px;
+  background: #017173;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.2s ease-in-out;
+}
+
+.buy-now:hover {
+  background: #015d5d;
+}
+
+/* Mobile Screen (Width < 576px) */
+@media (max-width: 576px) {
+  .customise-container {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .product-list {
+    width: 100%;
+  }
+
+  .products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .product-card {
+    width: 100%;
+    max-width: 140px;
+  }
+
+  .selected-products {
+    width: 100%;
+    margin-top: 20px;
+    position: sticky;
+    top: 16%;
+  }
+
+  .quantity-controls {
+    justify-content: space-between;
+  }
+}

@@ -11,35 +11,26 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
   const navigate = useNavigate(); // Hook for navigation
 
-  // Function to handle button click
   const handleCartClick = () => {
-    navigate("/cart"); // Navigate to /cart route
+    navigate("/cart"); // Navigate to cart page
   };
+
   return (
-    <div className="sticky-top">
+    <div className="sticky-top header">
       <Marque />
       <Navbar collapseOnSelect expand="lg" className="bg">
-        <Container>
-          <Navbar.Brand href="/">
-            <img
-              src={Logo}
-              alt="Logo"
-              height="70"
-              className="d-inline-block align-top"
-            />
+        <Container className="d-flex justify-content-between align-items-center">
+          {/* Brand & Logo */}
+          <Navbar.Brand href="/" className="brand-container">
+            <img src={Logo} alt="Logo" height="70" />
+            <span className="mobile-brand-text">90sDelight</span>
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#">Home</Nav.Link>
-              {/* <Nav.Link href="#">Products</Nav.Link>
-              <NavDropdown title="Categories" id="collapsible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Cat1</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Cat2</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Cat3</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">Cat4</NavDropdown.Item>
-              </NavDropdown> */}
               <Nav.Link href="#tracking">Tracking</Nav.Link>
               <Nav.Link href="#aboutus">About Us</Nav.Link>
               <Nav.Link href="#putharekulu">Putharekulu</Nav.Link>
@@ -48,14 +39,14 @@ const Header = () => {
               <Nav.Link href="/partner">Partner With Us</Nav.Link>
               <Nav.Link href="/contact">Contact Us</Nav.Link>
             </Nav>
-            <Nav>
+            <Nav className="align-items-center">
               <Nav.Link href="#account">Account</Nav.Link>
               <button
                 type="button"
                 className="btn position-relative"
                 onClick={handleCartClick}
               >
-                <i className="fa-solid fa-cart-shopping fa-xl text-light"></i>
+                <i className="fa-solid fa-cart-shopping fa-xl"></i>
                 <span className="position-absolute top-10 start-90 translate-middle p-2 bg-warning border border-light rounded-circle">
                   <span className="visually-hidden">New alerts</span>
                 </span>

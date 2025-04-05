@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./TopSellers.css"; // Import the CSS file
 import Top1 from '../assets/top1.webp';
 
@@ -13,26 +13,46 @@ const TopSellers = () => {
     { id: 6, name: "Fitness Tracker", price: 39.99, image: Top1 },
   ];
 
-  // Duplicate the array to create an infinite scroll effect
+  // Duplicating the product list to create a seamless infinite effect
   const infiniteProducts = [...topSellers, ...topSellers];
+
+  // Scroll Animation Logic
+  const trackRef = useRef(null);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    let scrollAmount = 0;
+
+    const scroll = () => {
+      scrollAmount += 1; // Adjust speed
+      if (scrollAmount >= track.scrollWidth / 2) {
+        scrollAmount = 0; // Reset to loop seamlessly
+      }
+      track.style.transform = `translateX(-${scrollAmount}px)`;
+      requestAnimationFrame(scroll);
+    };
+
+    scroll(); // Start animation
+  }, []);
 
   // Function to handle adding to cart
   const handleAddToCart = (product) => {
-    console.log(`${product.name} ($${product.price}) added to cart!`);
-    // Replace this with your actual cart logic (e.g., Redux, Context API, etc.)
+    console.log(`${product.name} (₹${product.price.toFixed(2)}) added to cart!`);
   };
 
   return (
     <div className="top-sellers-container">
       <h1>Top Sellers</h1>
       <div className="scroll-wrapper">
-        <div className="products-track">
-          {infiniteProducts.map((product) => (
-            <div key={`${product.id}-${Math.random()}`} className="product-card">
+        <div className="products-track" ref={trackRef}>
+          {infiniteProducts.map((product, index) => (
+            <div key={`${product.id}-${index}`} className="product-card">
               <img src={product.image} alt={product.name} />
               <h3>{product.name}</h3>
               <p>₹{product.price.toFixed(2)}</p>
-              <button 
+              <button
                 className="add-to-cart-btn"
                 onClick={() => handleAddToCart(product)}
               >
