@@ -33,8 +33,10 @@ const Header = () => {
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/track">Tracking</Nav.Link>
               <Nav.Link href="/aboutus">About Us</Nav.Link>
-              <Nav.Link href="#putharekulu">Putharekulu</Nav.Link>
-              <Nav.Link href="#sankranthi">Sankranthi Delights</Nav.Link>
+              <Nav.Link href="/products/putharekulu">Putharekulu</Nav.Link>
+              <Nav.Link href="/products/sankranthi-delights">
+                Sankranthi Delights
+              </Nav.Link>
               <Nav.Link href="/corporate">Corporate Gifting</Nav.Link>
               <Nav.Link href="/partner">Partner With Us</Nav.Link>
               <Nav.Link href="/contact">Contact Us</Nav.Link>
@@ -48,7 +50,7 @@ const Header = () => {
               >
                 <i className="fa-solid fa-cart-shopping fa-xl"></i>
                 <span className="position-absolute top-10 start-90 translate-middle p-2 bg-warning border border-light rounded-circle">
-                  <span className="visually-hidden">New alerts</span>
+                  <span className="visually-hidden">2</span>
                 </span>
               </button>
             </Nav>

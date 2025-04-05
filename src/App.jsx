@@ -11,6 +11,7 @@ import Customise from './pages/Customise'
 import Track from './pages/Track';
 import About from './pages/About';
 import CorporateGifting from './pages/CorporateGifting';
+import Products from './pages/Products';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Route exact path='/track' element={<Track/>}/>
         <Route exact path='/aboutus' element={<About/>}/>
         <Route exact path='/corporate' element={<CorporateGifting/>}/>
+        <Route path="/products/:type" element={<Products />} />
       </Routes>
       <Footer/>
       <ToastContainer
