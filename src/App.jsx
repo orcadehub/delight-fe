@@ -8,6 +8,9 @@ import Footer from './components/Footer'
 import Contact from './pages/Contact'
 import Partner from './pages/Partner'
 import Customise from './pages/Customise'
+import Track from './pages/Track';
+import About from './pages/About';
+import CorporateGifting from './pages/CorporateGifting';
 
 function App() {
 
@@ -21,6 +24,9 @@ function App() {
         <Route exact path='/contact' element={<Contact/>}/>
         <Route exact path='/partner' element={<Partner/>}/>
         <Route exact path='/customise' element={<Customise/>}/>
+        <Route exact path='/track' element={<Track/>}/>
+        <Route exact path='/aboutus' element={<About/>}/>
+        <Route exact path='/corporate' element={<CorporateGifting/>}/>
       </Routes>
       <Footer/>
       <ToastContainer

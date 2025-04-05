@@ -1,0 +1,61 @@
+.cg-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: #05d1d5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .cg-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: rgb(243, 191, 191);
+  }
+  
+  .cg-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    color: white;
+  }
+  
+  .cg-form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cg-form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .cg-form-group input,
+  .cg-form-group textarea {
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #000;
+  }
+  
+  .cg-form-group textarea {
+    resize: vertical;
+  }
+  
+  .cg-submit-btn {
+    padding: 0.8rem 1.5rem;
+    background-color: #3e92b6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cg-submit-btn:hover {
+    background-color: #017173;
+  }
+  
