@@ -1,61 +1,89 @@
 .cg-container {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 2rem;
-    color: #05d1d5;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 40px 30px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #f3faff, #e1f5fe);
+}
+
+.cg-container h1 {
+  font-size: 2.5rem;
+  color: #01579b;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.cg-description {
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.cg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cg-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.cg-form-group label {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.cg-form-group input,
+.cg-form-group textarea {
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cg-form-group input:focus,
+.cg-form-group textarea:focus {
+  border-color: #0288d1;
+  box-shadow: 0 0 0 0.2rem rgba(2, 136, 209, 0.25);
+  outline: none;
+}
+
+.cg-submit-btn {
+  background: linear-gradient(to right, #0288d1, #26c6da);
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.cg-submit-btn:hover {
+  background: linear-gradient(to right, #0277bd, #00acc1);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 576px) {
+  .cg-container {
+    padding: 30px 20px;
   }
-  
+
+  .cg-container h1 {
+    font-size: 1.8rem;
+  }
+
   .cg-description {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 2rem;
-    color: rgb(243, 191, 191);
+    font-size: 0.95rem;
   }
-  
-  .cg-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    color: white;
-  }
-  
-  .cg-form-group {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .cg-form-group label {
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-  }
-  
-  .cg-form-group input,
-  .cg-form-group textarea {
-    padding: 0.7rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    background-color: #fff;
-    color: #000;
-  }
-  
-  .cg-form-group textarea {
-    resize: vertical;
-  }
-  
-  .cg-submit-btn {
-    padding: 0.8rem 1.5rem;
-    background-color: #3e92b6;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cg-submit-btn:hover {
-    background-color: #017173;
-  }
-  
+}

@@ -1,135 +1,159 @@
 .customise-container {
   display: flex;
-  justify-content: space-between;
-  padding: 20px;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 40px;
+  background: linear-gradient(to bottom right, #f5faff, #e0f7fa);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Left: Product List */
+.product-list {
+  flex: 1 1 60%;
+}
+
+.product-list h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #00796b;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 20px;
 }
 
-/* Left Side - Product List */
-.product-list {
-  width: 65%;
-}
-.product-list h2 {
-  color: white;
-  text-align: center;
-}
-.products {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
 .product-card {
-  background: white;
+  background-color: #ffffff;
+  border-radius: 16px;
   padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   text-align: center;
-  width: 150px;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease;
 }
 
 .product-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-4px);
 }
 
 .product-card img {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 120px;
   object-fit: cover;
+  border-radius: 12px;
   margin-bottom: 10px;
+}
+
+.product-card h3 {
+  font-size: 1rem;
+  margin: 8px 0 4px;
+  color: #333;
+}
+
+.product-card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 8px;
 }
 
 .quantity-controls {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 10px;
 }
 
 .quantity-controls button {
-  background: #017173;
+  background-color: #26a69a;
   color: white;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 6px 10px;
+  font-size: 1rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s ease-in-out;
+  transition: background 0.3s;
 }
 
 .quantity-controls button:hover {
-  background: #015d5d;
+  background-color: #00897b;
 }
 
-/* Right Side - Selected Products */
+.quantity-controls span {
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Right: Selected Summary */
 .selected-products {
-    width: 300px;
-    flex-shrink: 0; /* Prevent resizing */
-    position: sticky;
-    top: 20%; /* Stays fixed at top */
-    background: #fff;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    height: fit-content; /* Adjust height dynamically */
-  }
+  flex: 1 1 35%;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.selected-products h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #004d40;
+}
 
 .selected-products ul {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
+  margin-bottom: 20px;
 }
 
 .selected-products li {
-  padding: 5px 0;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.selected-products h3 {
+  font-size: 1.2rem;
+  color: #00796b;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .buy-now {
   width: 100%;
-  padding: 10px;
-  background: #017173;
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #00796b;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background 0.2s ease-in-out;
+  transition: background 0.3s ease;
 }
 
 .buy-now:hover {
-  background: #015d5d;
+  background-color: #004d40;
 }
 
-/* Mobile Screen (Width < 576px) */
-@media (max-width: 576px) {
+.buy-now:disabled {
+  background-color: #b2dfdb;
+  cursor: not-allowed;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
   .customise-container {
     flex-direction: column-reverse;
-    align-items: center;
+    padding: 20px;
   }
 
-  .product-list {
-    width: 100%;
+  .product-list, .selected-products {
+    flex: 1 1 100%;
   }
 
   .products {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    justify-content: center;
-  }
-
-  .product-card {
-    width: 100%;
-    max-width: 140px;
-  }
-
-  .selected-products {
-    width: 100%;
-    margin-top: 20px;
-    position: sticky;
-    top: 16%;
-  }
-
-  .quantity-controls {
-    justify-content: space-between;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   }
 }

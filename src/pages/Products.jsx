@@ -1,227 +1,88 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./Products.css";
-import Image from "../assets/top1.webp";
+import Img from "../assets/top1.webp";
+import { toast } from "react-toastify";
+import allProducts from "./fake"; // Import your mock product array
+
 const Products = () => {
-  const { type } = useParams(); // get the category type from the URL
+  const { type } = useParams();
+  const navigate = useNavigate();
   const categories = [
     "putharekulu",
     "snacks",
     "sankranthi-delights",
     "jellies",
   ];
-  const [selectedCategory, setSelectedCategory] = useState(
-    type || "putharekulu"
-  );
+
+  const [selectedCategory, setSelectedCategory] = useState(type || "putharekulu");
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     setSelectedCategory(type || "putharekulu");
   }, [type]);
 
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-    window.history.pushState({}, "", `/products/${category}`);
+  useEffect(() => {
+    const filtered = allProducts.filter(
+      (product) => product.category === selectedCategory
+    );
+    setProducts(filtered);
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCart(storedCart);
+  }, []);
+
+  const updateCartStorage = (updatedCart) => {
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    setCart(updatedCart);
   };
 
-  const products = {
-    putharekulu: [
-      {
-        id: 1,
-        name: "Dry Fruit Putharekulu",
-        image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Putharekulu.jpg/640px-Putharekulu.jpg",
-        originalPrice: 180,
-        discountedPrice: 150,
-        ordersLastWeek: 42,
-        tag: "Best Seller",
-      },
-      {
-        id: 2,
-        name: "Jaggery Putharekulu",
-        image:
-          "https://www.atozpulse.com/wp-content/uploads/2021/08/Putharekulu-1024x768.jpg",
-        originalPrice: 160,
-        discountedPrice: 130,
-        ordersLastWeek: 28,
-        tag: "Limited Stock",
-      },
-      {
-        id: 10,
-        name: "Dry Fruit Putharekulu",
-        image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Putharekulu.jpg/640px-Putharekulu.jpg",
-        originalPrice: 180,
-        discountedPrice: 150,
-        ordersLastWeek: 42,
-        tag: "Best Seller",
-      },
-      {
-        id: 9,
-        name: "Jaggery Putharekulu",
-        image:
-          "https://www.atozpulse.com/wp-content/uploads/2021/08/Putharekulu-1024x768.jpg",
-        originalPrice: 160,
-        discountedPrice: 130,
-        ordersLastWeek: 28,
-        tag: "Limited Stock",
-      },
-      {
-        id: 13,
-        name: "Dry Fruit Putharekulu",
-        image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Putharekulu.jpg/640px-Putharekulu.jpg",
-        originalPrice: 180,
-        discountedPrice: 150,
-        ordersLastWeek: 42,
-        tag: "Best Seller",
-      },
-      {
-        id: 12,
-        name: "Jaggery Putharekulu",
-        image:
-          "https://www.atozpulse.com/wp-content/uploads/2021/08/Putharekulu-1024x768.jpg",
-        originalPrice: 160,
-        discountedPrice: 130,
-        ordersLastWeek: 28,
-        tag: "Limited Stock",
-      },
-      {
-        id: 11,
-        name: "Dry Fruit Putharekulu",
-        image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Putharekulu.jpg/640px-Putharekulu.jpg",
-        originalPrice: 180,
-        discountedPrice: 150,
-        ordersLastWeek: 42,
-        tag: "Best Seller",
-      },
-      {
-        id: 19,
-        name: "Jaggery Putharekulu",
-        image:
-          "https://www.atozpulse.com/wp-content/uploads/2021/08/Putharekulu-1024x768.jpg",
-        originalPrice: 160,
-        discountedPrice: 130,
-        ordersLastWeek: 28,
-        tag: "Limited Stock",
-      },
-    ],
-    snacks: [
-      {
-        id: 3,
-        name: "Murukulu",
-        image:
-          "https://www.indianhealthyrecipes.com/wp-content/uploads/2022/07/murukku-recipe.jpg",
-        originalPrice: 100,
-        discountedPrice: 80,
-        ordersLastWeek: 35,
-        tag: "Crispy Pick",
-      },
-      {
-        id: 4,
-        name: "Chekkalu",
-        image:
-          "https://www.indianhealthyrecipes.com/wp-content/uploads/2022/08/chekkalu-recipe.jpg",
-        originalPrice: 90,
-        discountedPrice: 70,
-        ordersLastWeek: 40,
-      },
-      {
-        id: 31,
-        name: "Murukulu",
-        image:
-          "https://www.indianhealthyrecipes.com/wp-content/uploads/2022/07/murukku-recipe.jpg",
-        originalPrice: 100,
-        discountedPrice: 80,
-        ordersLastWeek: 35,
-        tag: "Crispy Pick",
-      },
-      {
-        id: 41,
-        name: "Chekkalu",
-        image:
-          "https://www.indianhealthyrecipes.com/wp-content/uploads/2022/08/chekkalu-recipe.jpg",
-        originalPrice: 90,
-        discountedPrice: 70,
-        ordersLastWeek: 40,
-      },
-      {
-        id: 32,
-        name: "Murukulu",
-        image:
-          "https://www.indianhealthyrecipes.com/wp-content/uploads/2022/07/murukku-recipe.jpg",
-        originalPrice: 100,
-        discountedPrice: 80,
-        ordersLastWeek: 35,
-        tag: "Crispy Pick",
-      },
-      {
-        id: 42,
-        name: "Chekkalu",
-        image:
-          "https://www.indianhealthyrecipes.com/wp-content/uploads/2022/08/chekkalu-recipe.jpg",
-        originalPrice: 90,
-        discountedPrice: 70,
-        ordersLastWeek: 40,
-      },
-    ],
-    "sankranthi-delights": [
-      {
-        id: 5,
-        name: "Ariselu",
-        image:
-          "https://www.subbuskitchen.com/wp-content/uploads/2021/01/Ariselu-2-500x500.jpg",
-        originalPrice: 140,
-        discountedPrice: 120,
-        ordersLastWeek: 50,
-      },
-      {
-        id: 6,
-        name: "Bobbatlu",
-        image:
-          "https://www.subbuskitchen.com/wp-content/uploads/2021/03/Bobbatlu-Puran-Poli.jpg",
-        originalPrice: 130,
-        discountedPrice: 100,
-        ordersLastWeek: 37,
-        tag: "Festive Favorite",
-      },
-    ],
-    jellies: [
-      {
-        id: 7,
-        name: "Fruit Jelly Mix",
-        image: "https://m.media-amazon.com/images/I/81Fw-LyU+zL._SL1500_.jpg",
-        originalPrice: 80,
-        discountedPrice: 60,
-        ordersLastWeek: 55,
-      },
-      {
-        id: 8,
-        name: "Mango Jelly",
-        image: "https://m.media-amazon.com/images/I/81RvU0U0BFL._SL1500_.jpg",
-        originalPrice: 70,
-        discountedPrice: 50,
-        ordersLastWeek: 65,
-        tag: "Top Rated",
-      },
-      {
-        id: 71,
-        name: "Fruit Jelly Mix",
-        image: "https://m.media-amazon.com/images/I/81Fw-LyU+zL._SL1500_.jpg",
-        originalPrice: 80,
-        discountedPrice: 60,
-        ordersLastWeek: 55,
-      },
-      {
-        id: 81,
-        name: "Mango Jelly",
-        image: "https://m.media-amazon.com/images/I/81RvU0U0BFL._SL1500_.jpg",
-        originalPrice: 70,
-        discountedPrice: 50,
-        ordersLastWeek: 65,
-        tag: "Top Rated",
-      },
-    ],
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    navigate(`/products/${category}`);
+  };
+
+  const handleAddToCart = (product) => {
+    const token = localStorage.getItem("token"); // or sessionStorage.getItem("token")
+  
+    if (!token) {
+      toast.warning("Please login to add items to your cart!");
+      navigate("/login");
+      return;
+    }
+  
+    const updatedCart = [...cart, product];
+    updateCartStorage(updatedCart);
+    toast.success("Product added to cart!");
+  };
+  
+  const handleRemoveFromCart = (productId) => {
+    const token = localStorage.getItem("token"); // or sessionStorage.getItem("token")
+  
+    if (!token) {
+      toast.warning("Please login to remove items from your cart!");
+      navigate("/login");
+      return;
+    }
+  
+    const updatedCart = cart.filter((item) => {
+      const itemId = item._id || item.name;
+      return itemId !== productId;
+    });
+  
+    updateCartStorage(updatedCart);
+    toast.info("Product removed from cart");
+  };
+
+  const isInCart = (product) => {
+    const productId = product._id || product.name;
+    return cart.some((item) => {
+      const itemId = item._id || item.name;
+      return itemId === productId;
+    });
   };
 
   return (
@@ -245,33 +106,72 @@ const Products = () => {
       </div>
 
       <div className="products-grid">
-        {(products[selectedCategory] || []).map((product) => (
-          <div className="product-card" key={product.id}>
-            <img src={Image} alt={product.name} className="product-image" />
+        {products.length === 0 ? (
+          <p className="text-primary">No products found in this category.</p>
+        ) : (
+          products.map((product, index) => {
+            const originalPrice = Math.round(product.price * 1.2);
+            const productId = product._id || product.name;
 
-            {product.tag && (
-              <span className="product-badge">{product.tag}</span>
-            )}
+            return (
+              <div className="product-card" key={index}>
+                <img
+                  src={product.image || Img}
+                  alt={product.name}
+                  className="product-image"
+                />
 
-            <h4 className="product-name">{product.name}</h4>
+                {product.tag && (
+                  <span className="product-badge">{product.tag}</span>
+                )}
 
-            <div className="price-box">
-              <span className="original-price">₹{product.originalPrice}</span>
-              <span className="discounted-price">
-                ₹{product.discountedPrice}
-              </span>
-            </div>
+                <h4 className="product-name">{product.name}</h4>
 
-            <p className="orders-info">
-              🔄 {product.ordersLastWeek}+ orders placed last week
-            </p>
+                <div className="price-box">
+                  <span
+                    className="original-price"
+                    style={{
+                      textDecoration: "line-through",
+                      color: "#999",
+                      marginRight: "8px",
+                    }}
+                  >
+                    ₹{originalPrice}
+                  </span>
+                  <span
+                    className="discounted-price"
+                    style={{ fontWeight: "bold", color: "#e74c3c" }}
+                  >
+                    ₹{product.price}
+                  </span>
+                </div>
 
-            <button className="buy-now-btn">
-              {" "}
-              <i className="fa-solid fa-cart-shopping fa-l me-2"></i>Cart
-            </button>
-          </div>
-        ))}
+                {product.ordersLastWeek && (
+                  <p className="orders-info">
+                    🔄 {product.ordersLastWeek}+ orders placed last week
+                  </p>
+                )}
+
+                {isInCart(product) ? (
+                  <button
+                    className="buy-now-btn"
+                    style={{ backgroundColor: "#c0392b" }}
+                    onClick={() => handleRemoveFromCart(productId)}
+                  >
+                    <i className="fa-solid fa-trash fa-l me-2"></i>Remove from Cart
+                  </button>
+                ) : (
+                  <button
+                    className="buy-now-btn"
+                    onClick={() => handleAddToCart(product)}
+                  >
+                    <i className="fa-solid fa-cart-shopping fa-l me-2"></i>Add to Cart
+                  </button>
+                )}
+              </div>
+            );
+          })
+        )}
       </div>
     </div>
   );

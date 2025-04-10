@@ -1,40 +1,69 @@
+/* About.css */
+
 .about-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem;
-    color: white;
-    line-height: 1.8;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: transparent; /* Keep background transparent or adjust based on your theme */
-  }
-  
-  .about-container h1 {
-    font-size: 2.2rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid white;
-    padding-bottom: 0.5rem;
-  }
-  
-  .about-container h2 {
-    font-size: 1.5rem;
-    margin-top: 1.8rem;
-    margin-bottom: 0.8rem;
-    color: #ffffff;
-  }
-  
-  .about-container ul {
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .about-container li {
-    margin-bottom: 0.5rem;
-  }
-  
-  .author {
-    margin-top: 2rem;
-    font-style: italic;
-    font-weight: bold;
-    text-align: right;
-  }
-  
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #fff;
+  line-height: 1.7;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.about-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  text-align: center;
+  border-bottom: 2px solid #f1c40f;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.about-container h2 {
+  font-size: 1.6rem;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #34495e;
+  position: relative;
+}
+
+.about-container h2::before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background-color: #f39c12;
+  border-radius: 2px;
+}
+
+.about-container p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.about-container ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.about-container ul li {
+  margin-bottom: 10px;
+}
+
+.about-container ul li strong {
+  color: #e67e22;
+}
+
+.author {
+  margin-top: 40px;
+  font-style: italic;
+  text-align: right;
+  color: #7f8c8d;
+  font-size: 1rem;
+}

@@ -4,16 +4,39 @@
     border-radius: 150px;
     width: 96%;
     margin: 0.5rem auto;
-    box-shadow: 0px 5px 15px rgba(236, 207, 207, 0.533);
+    box-shadow: 0px 5px 15px rgba(230, 237, 23, 0.831);
 }
-
+.cart-count-text {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #000;
+    padding: 0 4px 0 4px;
+  }
+  .cart-count-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    background-color: #ffc107; /* Bootstrap warning color */
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #fff;
+  }
+  
+  
 /* Logo & Brand Container */
 .brand-container {
     display: flex;
     align-items: center;
     gap: 5px; /* Reduced space between logo & text */
-    margin-left: 0 !important;
-    padding-left: 0 !important;
+
 }
 
 .mobile-brand-text {
@@ -132,5 +155,8 @@
 
     .nav-link:hover {
         background-color: rgba(255, 255, 255, 0.2);
+    }
+    i{
+        color: white;
     }
 }

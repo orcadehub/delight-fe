@@ -3,38 +3,29 @@ import "./Customise.css";
 import Cat1 from '../assets/cat1.webp';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const products = [
-  { id: 1, name: "Putharekulu 1", price: 50, img: "product1.jpg" },
-  { id: 2, name: "Putharekulu 2", price: 60, img: "product2.jpg" },
-  { id: 3, name: "Putharekulu 3", price: 70, img: "product3.jpg" },
-  { id: 4, name: "Putharekulu 4", price: 80, img: "product4.jpg" },
-  { id: 5, name: "Putharekulu 5", price: 90, img: "product5.jpg" },
-  { id: 6, name: "Putharekulu 6", price: 100, img: "product6.jpg" },
-  { id: 7, name: "Putharekulu 7", price: 110, img: "product7.jpg" },
-  { id: 8, name: "Putharekulu 8", price: 120, img: "product8.jpg" },
-  { id: 9, name: "Putharekulu 9", price: 130, img: "product9.jpg" },
-  { id: 10, name: "Putharekulu 10", price: 140, img: "product10.jpg" },
-];
+import products from './fake';
 
 const Customise = () => {
   const [selectedProducts, setSelectedProducts] = useState({});
 
-  // Function to get total selected count
-  const getTotalSelected = () => {
-    return Object.values(selectedProducts).reduce((sum, count) => sum + count, 0);
-  };
+  const putharekuluProducts = products.filter((p) => p.category === "putharekulu");
+
+  const getTotalSelected = () =>
+    Object.values(selectedProducts).reduce((sum, count) => sum + count, 0);
 
   const addProduct = (product) => {
-    if (getTotalSelected() >= 10) {
-      toast.error("You can't add more than 10 products!");
-      return;
-    }
-
     setSelectedProducts((prev) => {
-      const updated = { ...prev, [product.id]: (prev[product.id] || 0) + 1 };
+      const newCount = (prev[product.id] || 0) + 1;
+      const newTotal = Object.values(prev).reduce((sum, count) => sum + count, 0) + 1;
 
-      if (getTotalSelected() + 1 === 10) {
+      if (newTotal > 10) {
+        toast.error("You can't add more than 10 products!");
+        return prev;
+      }
+
+      const updated = { ...prev, [product.id]: newCount };
+
+      if (newTotal === 10) {
         toast.success("Box is full! Proceed to checkout.");
       }
 
@@ -54,20 +45,18 @@ const Customise = () => {
     });
   };
 
-  const getTotalPrice = () => {
-    return Object.keys(selectedProducts).reduce(
-      (total, productId) => total + products.find(p => p.id == productId).price * selectedProducts[productId], 
-      0
-    );
-  };
+  const getTotalPrice = () =>
+    Object.keys(selectedProducts).reduce((total, productId) => {
+      const product = products.find((p) => p.id === Number(productId));
+      return total + product.price * selectedProducts[productId];
+    }, 0);
 
   return (
     <div className="customise-container">
-      {/* Left: Product Selection */}
       <div className="product-list">
-        <h2>Select Your 10 Putharekulu</h2>
+        <h2 className="text-center">Select Your 10 Putharekulu</h2>
         <div className="products">
-          {products.map((product) => (
+          {putharekuluProducts.map((product) => (
             <div key={product.id} className="product-card">
               <img src={Cat1} alt={product.name} />
               <h3>{product.name}</h3>
@@ -82,12 +71,11 @@ const Customise = () => {
         </div>
       </div>
 
-      {/* Right: Selected Products */}
       <div className="selected-products">
         <h2>Selected Items ({getTotalSelected()}/10)</h2>
         <ul>
           {Object.keys(selectedProducts).map((productId) => {
-            const product = products.find((p) => p.id == productId);
+            const product = products.find((p) => p.id === Number(productId));
             return (
               <li key={product.id}>
                 {product.name} (x{selectedProducts[product.id]}) - ₹

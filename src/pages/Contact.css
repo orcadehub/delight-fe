@@ -1,96 +1,105 @@
-/* Background - Soft Light Gradient */
+/* Contact Section */
 .contact-section {
-  background: linear-gradient(135deg, #f8f9fa, #e3f2fd);
-  /* min-height: 100vh; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 50px 0;
+  padding: 60px 0;
+  background: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Elegant Text */
 .elegant-text {
-  font-size: 2.4rem;
-  font-weight: bold;
-  color: #3b3b3b;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  font-size: 2.5rem;
+  color: #333;
 }
 
-/* Light Background Cards */
+.contact-card {
+  border: none;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  background: white;
+}
+
 .light-bg1 {
-  background: linear-gradient(135deg, #ffffff, #f1f8ff);
+  background: #ffffff;
 }
 
 .light-bg2 {
-  background: linear-gradient(135deg, #fefefe, #e9f7ff);
+  background: #f7fafd;
 }
 
-/* Elegant Input Fields */
 .elegant-input {
-  background: rgba(255, 255, 255, 0.8);
-  color: #333;
+  border-radius: 10px;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: 0.3s ease-in-out;
+  padding: 12px 15px;
+  transition: border 0.3s;
 }
 
 .elegant-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+  border-color: #4ecdc4;
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+  outline: none;
 }
 
-/* Elegant Card */
-.contact-card {
-  border-radius: 15px;
-  padding: 30px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.contact-card:hover {
-  transform: translateY(-3px);
-}
-
-/* Elegant Button */
 .btn-elegant {
-  background: linear-gradient(135deg, #6ec6ff, #039be5);
+  background: linear-gradient(45deg, #017173, #4ecdc4);
   color: white;
-  font-weight: bold;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
-  transition: 0.3s ease;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  transition: all 0.3s ease;
 }
 
 .btn-elegant:hover {
-  background: linear-gradient(135deg, #039be5, #6ec6ff);
-  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
-  opacity: 0.9;
+  background: linear-gradient(45deg, #015e5f, #38bfb2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Social Media Icons */
-.social-btn {
-  font-size: 18px;
-  padding: 12px;
+/* Contact Info */
+.contact-info h5 {
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #017173;
+}
+
+.contact-info p {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Social Icons */
+.social-icons .social-btn {
+  margin: 0 10px;
+  background: #017173;
   color: white;
   border-radius: 50%;
-  margin: 5px;
-  transition: 0.3s ease;
+  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
 }
 
-.linkedin {
-  background: #0077b5;
+.social-icons .social-btn:hover {
+  background: #4ecdc4;
+  color: white;
 }
 
-.twitter {
-  background: #1da1f2;
-}
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 40px 20px;
+  }
 
-.instagram {
-  background: #e4405f;
-}
+  .elegant-text {
+    font-size: 2rem;
+  }
 
-.social-btn:hover {
-  opacity: 0.8;
+  .contact-card {
+    padding: 20px;
+  }
 }

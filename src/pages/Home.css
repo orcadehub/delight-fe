@@ -1,56 +1,64 @@
+/* Home.css */
+
 .home-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    background-size: cover;
-    padding: 20px;
-  }
-  body {
-    scroll-behavior: smooth;
-  }
-  
-  
-  .content-wrapper {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 40px;
-    border-radius: 15px;
-    margin: 1rem 0;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-  }
-  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fdfdfd;
+  color: #333;
+  padding: 0;
+  margin: 0;
+}
+
+/* Customise Section */
+.content-wrapper {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #fff7e6;
+  margin: 40px auto;
+  border-radius: 16px;
+  max-width: 800px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+}
+
+.content-wrapper h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #e67e22;
+}
+
+.selection-text {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.customise-btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.customise-btn:hover {
+  background-color: #d35400;
+  transform: scale(1.05);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
   .content-wrapper h1 {
-    color: #ffffff;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 1.5rem;
   }
-  
+
   .selection-text {
-    color: #e0e0e0;
-    font-size: 1.2rem;
-    margin: 0 0 25px 0;
-    font-style: italic;
+    font-size: 1rem;
   }
-  
+
   .customise-btn {
-    padding: 12px 30px;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-    color: white;
-    border: none;
-    border-radius: 25px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    font-size: 0.95rem;
   }
-  
-  .customise-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  }
+}

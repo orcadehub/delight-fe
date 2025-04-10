@@ -1,12 +1,19 @@
-.top-sellers-container {
-  padding: 40px;
-  background: linear-gradient(135deg, #fff1eb 0%, #ace0f9 100%);
-  width: 100%;
+/* ---------- GLOBAL RESET FOR BOX-SIZING ---------- */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  overflow: hidden;
 }
 
-.top-sellers-container h1 {
+/* ---------- TOP SELLERS SECTION ---------- */
+.ts-container {
+  background: linear-gradient(135deg, #fff1eb 0%, #ace0f9 100%);
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 20px;
+}
+
+.ts-container h1 {
   text-align: center;
   color: #333;
   margin-bottom: 40px;
@@ -15,65 +22,82 @@
   letter-spacing: 2px;
 }
 
-/* Scrolling Wrapper */
-.scroll-wrapper {
+/* ---------- SCROLLABLE PRODUCTS WRAPPER ---------- */
+.ts-scroll-wrapper {
   width: 100%;
   overflow: hidden;
   position: relative;
   display: flex;
+  justify-content: center;
 }
 
-/* Infinite Scrolling Effect */
-.products-track {
+/* ---------- SCROLLING TRACK ---------- */
+.ts-products-track {
   display: flex;
   gap: 20px;
   white-space: nowrap;
-  animation: scroll 5s linear infinite; /* Slow & smooth infinite scroll */
   will-change: transform;
+  width: fit-content;
+  max-width: 100%;
+  transition: transform 0.3s ease-out;
 }
 
-/* Duplicate products for smooth infinite effect */
-.products-track > * {
+.ts-products-track > * {
   flex: 0 0 auto;
 }
 
-/* Product Card Styling */
-.product-card {
+/* ---------- PRODUCT CARD ---------- */
+.ts-card {
   background: white;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  min-width: 250px;
+  width: 100%;
+  max-width: 250px;
   text-align: center;
   transition: transform 0.3s ease;
   padding-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  margin: 0 auto;
 }
 
-.product-card:hover {
+.ts-card:hover {
   transform: scale(1.05);
 }
 
-.product-card img {
+/* ---------- PRODUCT IMAGE ---------- */
+.ts-card img {
   width: 100%;
-  height: 150px;
+  height: auto;
+  max-height: 150px;
   object-fit: cover;
+  border-bottom: 1px solid #eee;
+  display: block;
 }
 
-.product-card h3 {
-  padding: 10px 0;
+/* ---------- PRODUCT TITLE ---------- */
+.ts-card h3 {
+  padding: 10px 10px 0;
   margin: 0;
   color: #444;
   font-size: 1.2rem;
+  word-wrap: break-word;
+  white-space: normal;
 }
 
-.product-card p {
+/* ---------- PRODUCT PRICE ---------- */
+.ts-card p {
   margin: 0;
-  padding-bottom: 10px;
+  padding: 0 10px 10px;
   color: #666;
   font-weight: bold;
+  word-wrap: break-word;
 }
 
-.add-to-cart-btn {
+/* ---------- BUTTON STYLE ---------- */
+.ts-btn {
   background: linear-gradient(45deg, #017173, #4ecdc4);
   color: white;
   border: none;
@@ -82,37 +106,55 @@
   cursor: pointer;
   font-size: 1rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin: 10px auto 0;
+  max-width: 90%;
 }
 
-.add-to-cart-btn:hover {
+.ts-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Keyframes for Infinite Scrolling */
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%); /* Moves half of the items, ensuring smooth looping */
-  }
-}
-
-/* Pause animation on hover */
-.scroll-wrapper:hover .products-track {
-  animation-play-state: paused;
-}
-
-/* Responsive Adjustments */
+/* ---------- RESPONSIVE BREAKPOINTS ---------- */
 @media (max-width: 768px) {
-  .product-card {
-    min-width: 200px;
+  .ts-card {
+    max-width: 200px;
+  }
+
+  .ts-card h3 {
+    font-size: 1rem;
+  }
+
+  .ts-card img {
+    height: 300px; /* Increased from 150px */
+    object-fit: cover;
+    width: 100%;
   }
 }
 
 @media (max-width: 576px) {
-  .product-card {
-    min-width: 180px;
+  .ts-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .ts-card {
+    width: 100%;
+    max-width: 85%;
+    margin: 0 auto;
+  }
+
+  .ts-card h3 {
+    font-size: 0.9rem;
+  }
+
+  .ts-card img {
+    height: 220px; /* Increased from 120px */
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .ts-products-track {
+    gap: 10px;
   }
 }
+

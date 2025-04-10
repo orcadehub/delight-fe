@@ -1,24 +1,34 @@
-import React, { useEffect, useRef } from "react";
-import "./TopSellers.css"; // Import the CSS file
-import Top1 from '../assets/top1.webp';
+import React, { useEffect, useRef, useMemo, useState } from "react";
+import topSellers from "../pages/fake";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import "./TopSellers.css";
 
 const TopSellers = () => {
-  // Array of top-selling products
-  const topSellers = [
-    { id: 1, name: "Wireless Headphones", price: 99.99, image: Top1 },
-    { id: 2, name: "Smart Watch", price: 149.99, image: Top1 },
-    { id: 3, name: "Gaming Mouse", price: 59.99, image: Top1 },
-    { id: 4, name: "LED Lamp", price: 29.99, image: Top1 },
-    { id: 5, name: "Bluetooth Speaker", price: 79.99, image: Top1 },
-    { id: 6, name: "Fitness Tracker", price: 39.99, image: Top1 },
-  ];
-
-  // Duplicating the product list to create a seamless infinite effect
-  const infiniteProducts = [...topSellers, ...topSellers];
-
-  // Scroll Animation Logic
   const trackRef = useRef(null);
+  const navigate = useNavigate();
+  const [cart, setCart] = useState(() => {
+    // Load from localStorage on first render
+    try {
+      return JSON.parse(localStorage.getItem("cart")) || [];
+    } catch {
+      return [];
+    }
+  });
 
+  // Update localStorage only when cart changes, and cart has initialized
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  // Get top sellers and randomly pick 6 (duplicated for seamless scroll)
+  const selectedTopSellers = useMemo(() => {
+    const filtered = topSellers.filter((product) => product.topSeller);
+    const shuffled = filtered.sort(() => 0.5 - Math.random());
+    return [...shuffled.slice(0, 6), ...shuffled.slice(0, 6)];
+  }, []);
+
+  // Auto-scroll effect
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -26,38 +36,87 @@ const TopSellers = () => {
     let scrollAmount = 0;
 
     const scroll = () => {
-      scrollAmount += 1; // Adjust speed
+      scrollAmount += 1;
       if (scrollAmount >= track.scrollWidth / 2) {
-        scrollAmount = 0; // Reset to loop seamlessly
+        scrollAmount = 0;
       }
       track.style.transform = `translateX(-${scrollAmount}px)`;
       requestAnimationFrame(scroll);
     };
 
-    scroll(); // Start animation
+    scroll();
   }, []);
 
-  // Function to handle adding to cart
+  // Add to cart
   const handleAddToCart = (product) => {
-    console.log(`${product.name} (₹${product.price.toFixed(2)}) added to cart!`);
+    const token = localStorage.getItem("token"); // or sessionStorage.getItem("token")
+
+    if (!token) {
+      toast.warning("Please login to add items to your cart!");
+      navigate("/login");
+      return;
+    }
+
+    const updatedCart = [...cart, product];
+    setCart(updatedCart);
+    toast.success(`${product.name} added to cart!`);
+  };
+
+  // Remove from cart
+  const handleRemoveFromCart = (product) => {
+    const token = localStorage.getItem("token"); // or sessionStorage.getItem("token")
+
+    if (!token) {
+      toast.warning("Please login to remove items from your cart!");
+      navigate("/login");
+      return;
+    }
+
+    const productId = product._id || product.name;
+    const updatedCart = cart.filter((item) => {
+      const itemId = item._id || item.name;
+      return itemId !== productId;
+    });
+    setCart(updatedCart);
+    toast.info(`${product.name} removed from cart`);
+  };
+
+  // Check if product is in cart
+  const isInCart = (product) => {
+    const productId = product._id || product.name;
+    return cart.some((item) => {
+      const itemId = item._id || item.name;
+      return itemId === productId;
+    });
   };
 
   return (
-    <div className="top-sellers-container">
+    <div className="ts-container">
       <h1>Top Sellers</h1>
-      <div className="scroll-wrapper">
-        <div className="products-track" ref={trackRef}>
-          {infiniteProducts.map((product, index) => (
-            <div key={`${product.id}-${index}`} className="product-card">
+      <div className="ts-scroll-wrapper">
+        <div className="ts-products-track" ref={trackRef}>
+          {selectedTopSellers.map((product, index) => (
+            <div key={`${product.name}-${index}`} className="ts-card">
               <img src={product.image} alt={product.name} />
               <h3>{product.name}</h3>
               <p>₹{product.price.toFixed(2)}</p>
-              <button
-                className="add-to-cart-btn"
-                onClick={() => handleAddToCart(product)}
-              >
-                Add to Cart
-              </button>
+
+              {isInCart(product) ? (
+                <button
+                  className="ts-btn"
+                  style={{ backgroundColor: "#c0392b" }}
+                  onClick={() => handleRemoveFromCart(product)}
+                >
+                  Remove from Cart
+                </button>
+              ) : (
+                <button
+                  className="ts-btn"
+                  onClick={() => handleAddToCart(product)}
+                >
+                  Add to Cart
+                </button>
+              )}
             </div>
           ))}
         </div>

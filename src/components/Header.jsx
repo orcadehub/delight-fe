@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -9,10 +9,52 @@ import Logo from "../assets/logo.avif";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+
+    updateCartCount(); // Initial cart count
+  }, []);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      updateCartCount();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
+  const updateCartCount = () => {
+    const cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    const count = cartData.length;
+    setCartCount(count);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    setUser(null);
+    navigate("/login");
+  };
 
   const handleCartClick = () => {
-    navigate("/cart"); // Navigate to cart page
+    navigate("/cart");
+
+    const navbarToggler = document.querySelector(".navbar-toggler");
+    const navbarCollapse = document.querySelector("#responsive-navbar-nav");
+
+    if (navbarToggler && navbarCollapse.classList.contains("show")) {
+      navbarToggler.click();
+    }
   };
 
   return (
@@ -20,7 +62,7 @@ const Header = () => {
       <Marque />
       <Navbar collapseOnSelect expand="lg" className="bg">
         <Container className="d-flex justify-content-between align-items-center">
-          {/* Brand & Logo */}
+          {/* Brand */}
           <Navbar.Brand href="/" className="brand-container">
             <img src={Logo} alt="Logo" height="70" />
             <span className="mobile-brand-text">90sDelight</span>
@@ -31,28 +73,48 @@ const Header = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/track">Tracking</Nav.Link>
               <Nav.Link href="/aboutus">About Us</Nav.Link>
-              <Nav.Link href="/products/putharekulu">Putharekulu</Nav.Link>
-              <Nav.Link href="/products/sankranthi-delights">
-                Sankranthi Delights
-              </Nav.Link>
+              <Nav.Link href="/products/putharekulu">Products</Nav.Link>
               <Nav.Link href="/corporate">Corporate Gifting</Nav.Link>
               <Nav.Link href="/partner">Partner With Us</Nav.Link>
               <Nav.Link href="/contact">Contact Us</Nav.Link>
             </Nav>
-            <Nav className="align-items-center">
-              <Nav.Link href="#account">Account</Nav.Link>
-              <button
-                type="button"
-                className="btn position-relative"
-                onClick={handleCartClick}
-              >
-                <i className="fa-solid fa-cart-shopping fa-xl"></i>
-                <span className="position-absolute top-10 start-90 translate-middle p-2 bg-warning border border-light rounded-circle">
-                  <span className="visually-hidden">2</span>
-                </span>
-              </button>
+
+            <Nav className="align-items-center gap-3">
+              {user ? (
+                <>
+                  {/* Dropdown menu for logged-in user */}
+                  <NavDropdown
+                    title={user.fullName?.split(" ")[0] || "My Account"}
+                    id="user-nav-dropdown"
+                  >
+                    <NavDropdown.Item onClick={() => navigate("/profile")}>
+                      Profile
+                    </NavDropdown.Item>
+                    <NavDropdown.Item onClick={() => navigate("/orders")}>
+                      Orders
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item onClick={handleLogout}>
+                      Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+
+                  {/* Cart button visible only when logged in */}
+                  <button
+                    type="button"
+                    className="btn position-relative"
+                    onClick={handleCartClick}
+                  >
+                    <i className="fa-solid fa-cart-shopping fa-xl"></i>
+                    {cartCount > 0 && (
+                      <span className="cart-count-badge">{cartCount}</span>
+                    )}
+                  </button>
+                </>
+              ) : (
+                <Nav.Link href="/login">Account</Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
