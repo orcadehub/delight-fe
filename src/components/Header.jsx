@@ -21,6 +21,14 @@ const Header = () => {
 
     updateCartCount(); // Initial cart count
   }, []);
+  const closeNavbar = () => {
+    const navbarToggler = document.querySelector(".navbar-toggler");
+    const navbarCollapse = document.querySelector("#responsive-navbar-nav");
+
+    if (navbarToggler && navbarCollapse.classList.contains("show")) {
+      navbarToggler.click(); // Close the menu
+    }
+  };
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -64,7 +72,7 @@ const Header = () => {
         <Container className="d-flex justify-content-between align-items-center">
           {/* Brand */}
           <Navbar.Brand href="/" className="brand-container">
-            <img src={Logo} alt="Logo" height="70" />
+            <img src={Logo} alt="Logo" />
             <span className="mobile-brand-text">90sDelight</span>
           </Navbar.Brand>
 
@@ -85,17 +93,41 @@ const Header = () => {
                 <>
                   {/* Dropdown menu for logged-in user */}
                   <NavDropdown
-                    title={user.fullName?.split(" ")[0] || "My Account"}
+                    title={
+                      <span className="user-dropdown-title">
+                        <i className="fa-solid fa-user-circle"></i>
+                        <span className="ms-1 me-1">
+                          {user.fullName?.split(" ")[0] || "My Account"}
+                        </span>
+                        <i className="fa-solid fa-caret-down"></i>
+                      </span>
+                    }
                     id="user-nav-dropdown"
                   >
-                    <NavDropdown.Item onClick={() => navigate("/profile")}>
+                    <NavDropdown.Item
+                      onClick={() => {
+                        navigate("/profile");
+                        closeNavbar();
+                      }}
+                    >
                       Profile
                     </NavDropdown.Item>
-                    <NavDropdown.Item onClick={() => navigate("/orders")}>
+
+                    <NavDropdown.Item
+                      onClick={() => {
+                        navigate("/orders");
+                        closeNavbar();
+                      }}
+                    >
                       Orders
                     </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item onClick={handleLogout}>
+
+                    <NavDropdown.Item
+                      onClick={() => {
+                        handleLogout();
+                        closeNavbar();
+                      }}
+                    >
                       Logout
                     </NavDropdown.Item>
                   </NavDropdown>

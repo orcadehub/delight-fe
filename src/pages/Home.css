@@ -24,6 +24,22 @@
   margin-bottom: 10px;
   color: #e67e22;
 }
+.customise-image-wrapper {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.customise-image {
+  width: 90%;
+  
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.customise-image:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
 
 .selection-text {
   font-size: 1.1rem;

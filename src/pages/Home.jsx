@@ -4,6 +4,7 @@ import CarouselEx from "../components/CarouselEx";
 import "./Home.css";
 import Cat from "../components/Cat";
 import TopSellers from "../components/TopSellers";
+import Customise from '../assets/customise.png'; // Import the image
 
 const Home = () => {
   const navigate = useNavigate(); // Initialize navigate function
@@ -13,17 +14,13 @@ const Home = () => {
       <CarouselEx />
       
       {/* Customise Section */}
-      <div className="content-wrapper">
-        <h1>Customise Your Box</h1>
-        <p className="selection-text">
-          Select any 10 types of putharekulu and add it in the box
-        </p>
-        <button 
-          className="customise-btn" 
+      <div className="customise-image-wrapper">
+        <img 
+          src={Customise} 
+          alt="Customise Your Box" 
+          className="customise-image" 
           onClick={() => navigate("/customise")} // Navigate on click
-        >
-          Click here to customise
-        </button>
+        />
       </div>
 
       {/* Categories */}

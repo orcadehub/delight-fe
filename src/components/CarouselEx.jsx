@@ -1,5 +1,6 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+import { Link } from 'react-router-dom';
 import Slide1 from '../assets/car.png';
 import Slide2 from '../assets/car2.webp';
 import Slide3 from '../assets/car3.webp';
@@ -10,25 +11,31 @@ const CarouselEx = () => {
     <div>
       <Carousel fade>
         <Carousel.Item>
-          <img
-            className="d-block w-100 carousel-image"
-            src={Slide1}
-            alt="First slide"
-          />
+          <Link to="/products/putharekulu">
+            <img
+              className="d-block w-100 carousel-image"
+              src={Slide1}
+              alt="First slide"
+            />
+          </Link>
         </Carousel.Item>
         <Carousel.Item>
-          <img
-            className="d-block w-100 carousel-image"
-            src={Slide2}
-            alt="Second slide"
-          />
+          <Link to="/products/putharekulu">
+            <img
+              className="d-block w-100 carousel-image"
+              src={Slide2}
+              alt="Second slide"
+            />
+          </Link>
         </Carousel.Item>
         <Carousel.Item>
-          <img
-            className="d-block w-100 carousel-image"
-            src={Slide3}
-            alt="Third slide"
-          />
+          <Link to="/products/putharekulu">
+            <img
+              className="d-block w-100 carousel-image"
+              src={Slide3}
+              alt="Third slide"
+            />
+          </Link>
         </Carousel.Item>
       </Carousel>
     </div>

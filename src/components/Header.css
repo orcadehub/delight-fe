@@ -105,6 +105,12 @@
     background-color: #017173 !important;
     border: none;
 }
+.user-dropdown-title {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  
 
 .dropdown-item {
     color: white !important;
@@ -130,33 +136,77 @@
 
 /* Mobile View */
 @media (max-width: 991px) {
+    .navbar {
+        height: 60px; /* Reduced navbar height */
+        padding: 0.25rem 0.75rem;
+    }
+
+    .navbar-brand img {
+        height: 40px; /* Reduced logo height */
+    }
+
+    .mobile-brand-text {
+        font-size: 18px; /* Reduced title size */
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.9rem; /* Shrink toggler size */
+    }
+
+    .navbar-toggler-icon {
+        width: 20px;
+        height: 20px;
+    }
+
     .navbar-nav {
         background-color: #017173 !important;
         width: 100%;
         text-align: center;
-        padding: 1rem 0;
+        padding: 0.5rem 0;
         border-radius: 10px;
     }
 
     .navbar-nav .nav-link {
         color: white !important;
-        font-size: 16px;
-        padding: 10px;
+        font-size: 15px;
+        padding: 8px;
         display: block;
     }
 
     .navbar-toggler {
         border-color: rgba(0, 0, 0, 0.5);
-    }
-
-    .navbar-toggler-icon {
-        filter: invert(1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .nav-link:hover {
         background-color: rgba(255, 255, 255, 0.2);
     }
-    i{
+
+    i {
         color: white;
+    }
+
+    /* Align brand and toggler in center space */
+    .brand-container {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .navbar-collapse {
+        text-align: center;
+    }
+
+    .btn.position-relative {
+        font-size: 0.85rem;
+    }
+
+    .cart-count-badge {
+        width: 18px;
+        height: 18px;
+        font-size: 0.65rem;
     }
 }

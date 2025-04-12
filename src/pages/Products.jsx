@@ -8,14 +8,11 @@ import allProducts from "./fake"; // Import your mock product array
 const Products = () => {
   const { type } = useParams();
   const navigate = useNavigate();
-  const categories = [
-    "putharekulu",
-    "snacks",
-    "sankranthi-delights",
-    "jellies",
-  ];
+  const categories = ["putharekulu", "jellies", "combo"];
 
-  const [selectedCategory, setSelectedCategory] = useState(type || "putharekulu");
+  const [selectedCategory, setSelectedCategory] = useState(
+    type || "putharekulu"
+  );
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
 
@@ -47,32 +44,32 @@ const Products = () => {
 
   const handleAddToCart = (product) => {
     const token = localStorage.getItem("token"); // or sessionStorage.getItem("token")
-  
+
     if (!token) {
       toast.warning("Please login to add items to your cart!");
       navigate("/login");
       return;
     }
-  
+
     const updatedCart = [...cart, product];
     updateCartStorage(updatedCart);
     toast.success("Product added to cart!");
   };
-  
+
   const handleRemoveFromCart = (productId) => {
     const token = localStorage.getItem("token"); // or sessionStorage.getItem("token")
-  
+
     if (!token) {
       toast.warning("Please login to remove items from your cart!");
       navigate("/login");
       return;
     }
-  
+
     const updatedCart = cart.filter((item) => {
       const itemId = item._id || item.name;
       return itemId !== productId;
     });
-  
+
     updateCartStorage(updatedCart);
     toast.info("Product removed from cart");
   };
@@ -158,14 +155,15 @@ const Products = () => {
                     style={{ backgroundColor: "#c0392b" }}
                     onClick={() => handleRemoveFromCart(productId)}
                   >
-                    <i className="fa-solid fa-trash fa-l me-2"></i>Remove from Cart
+                    <i className="fa-solid fa-cart-shopping fa-l me-2"></i>
+                    Remove
                   </button>
                 ) : (
                   <button
                     className="buy-now-btn"
                     onClick={() => handleAddToCart(product)}
                   >
-                    <i className="fa-solid fa-cart-shopping fa-l me-2"></i>Add to Cart
+                    <i className="fa-solid fa-cart-shopping fa-l me-2"></i>Add
                   </button>
                 )}
               </div>
