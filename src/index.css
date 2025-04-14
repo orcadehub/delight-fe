@@ -1,6 +1,8 @@
 html {
   scroll-behavior: smooth;
 }
-body{
+body {
   background: linear-gradient(135deg, #f9f9f9, #e0f7fa);
+
+  font-family: "Acme", sans-serif;
 }

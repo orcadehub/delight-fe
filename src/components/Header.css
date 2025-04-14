@@ -84,10 +84,20 @@
     background-color: #017173;
     transition: width 0.3s ease;
 }
-
+.menu{
+    width: 75%;
+    display: flex;
+    justify-content: end;
+}
 .navbar-nav .nav-link:hover::after {
     width: 100%;
 }
+/* Center the navbar items */
+.nav-center {
+  justify-content: center;
+  flex: 1;
+}
+
 
 .navbar-nav .nav-link:hover {
     color: #017173 !important;
@@ -167,6 +177,9 @@
         border-radius: 10px;
     }
 
+    .menu{
+        width: 100%;
+    }
     .navbar-nav .nav-link {
         color: white !important;
         font-size: 15px;

@@ -79,7 +79,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="me-auto menu">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/aboutus">About Us</Nav.Link>
               <Nav.Link href="/products/putharekulu">Products</Nav.Link>
@@ -88,7 +88,7 @@ const Header = () => {
               <Nav.Link href="/contact">Contact Us</Nav.Link>
             </Nav>
 
-            <Nav className="align-items-center gap-3">
+            <Nav className="align-items-center gap-3 ">
               {user ? (
                 <>
                   {/* Dropdown menu for logged-in user */}
