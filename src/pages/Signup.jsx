@@ -4,6 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import './Login.css';
+import config from "../config";
 
 const Signup = () => {
   const [form, setForm] = useState({
@@ -13,12 +14,17 @@ const Signup = () => {
     password: "",
   });
 
+  const baseURL =
+    import.meta.env.MODE === "development"
+      ? config.LOCAL_BASE_URL
+      : config.BASE_URL;
+
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3300/register", form);
+      const res = await axios.post(`${baseURL}/register`, form);
       toast.success(res.data.message || "Signup successful!");
     } catch (err) {
       toast.error(err.response?.data?.message || "Signup failed");

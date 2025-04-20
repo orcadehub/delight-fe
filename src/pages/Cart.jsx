@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState(() => {
     try {
       const storedCart = localStorage.getItem("cart");
@@ -16,7 +18,6 @@ const Cart = () => {
     }
   });
 
-  // Update localStorage when cartItems change
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
@@ -40,8 +41,7 @@ const Cart = () => {
   };
 
   const removeItem = (name) => {
-    const updatedCart = cartItems.filter((item) => item.name !== name);
-    setCartItems(updatedCart);
+    setCartItems((prevItems) => prevItems.filter((item) => item.name !== name));
   };
 
   const calculateTotal = () => {
@@ -84,7 +84,9 @@ const Cart = () => {
           ))}
           <div className="cart-total">
             <h2>Total: ₹{calculateTotal()}</h2>
-            <button className="checkout-btn">Proceed to Checkout</button>
+            <button className="checkout-btn" onClick={() => navigate("/checkout")}>
+              Proceed to Checkout
+            </button>
           </div>
         </div>
       )}

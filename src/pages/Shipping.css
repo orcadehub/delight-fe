@@ -1,0 +1,114 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georgia', serif;
+  }
+  
+  body {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  /* Container */
+  .shipping-container {
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 1100px;
+    margin: 40px auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  
+  /* Header Styling */
+  .shipping-header h1 {
+    font-size: 3rem;
+    color: #8B5E3C; /* Elegant golden-brown */
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  /* Content Styling */
+  .shipping-content h3 {
+    font-size: 2rem;
+    color: #2D2A3D; /* Deep luxury color */
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+  }
+  
+  .shipping-content p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .shipping-content h4 {
+    font-size: 1.6rem;
+    color: #8B5E3C; /* Elegant golden-brown */
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .shipping-content h5 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #6A4E23; /* Warm brown */
+  }
+  
+  .shipping-content ul, .shipping-content ol {
+    padding-left: 30px;
+    color: #444;
+  }
+  
+  .shipping-content li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+  }
+  
+  .shipping-content ul li {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+  }
+  
+  /* Highlighting important info */
+  strong {
+    color: #8B5E3C; /* Golden-Brown */
+    font-weight: bold;
+  }
+  
+  /* Footer Styling */
+  .shipping-footer {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .shipping-footer p {
+    font-size: 1.2rem;
+    color: #555;
+    font-weight: 400;
+    padding: 20px;
+  }
+  
+  /* Apply Hover Effects for Links */
+  a {
+    color: #8B5E3C;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  a:hover {
+    color: #D1B097; /* Light luxurious color */
+    text-decoration: underline;
+  }
+  
+  /* Apply subtle shadow effect on the container */
+  .shipping-container:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  

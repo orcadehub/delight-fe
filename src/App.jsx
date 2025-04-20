@@ -14,6 +14,10 @@ import CorporateGifting from "./pages/CorporateGifting";
 import Products from "./pages/Products";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Checkout from "./pages/CheckOut";
+import Returns from "./pages/Returns";
+import Shipping from "./pages/Shipping";
+import TestCheck from "./pages/TestCheck";
 
 function App() {
   return (
@@ -24,11 +28,15 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/cart" element={<Cart />} />
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signup" element={<Signup/>} />
+          <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/test" element={<TestCheck />} />
           <Route exact path="/contact" element={<Contact />} />
           <Route exact path="/partner" element={<Partner />} />
           <Route exact path="/customise" element={<Customise />} />
           <Route exact path="/track" element={<Track />} />
+          <Route exact path="/checkout" element={<Checkout />} />
+          <Route exact path="/returns-refunds" element={<Returns />} />
+          <Route exact path="/shipping" element={<Shipping />} />
           <Route exact path="/aboutus" element={<About />} />
           <Route exact path="/corporate" element={<CorporateGifting />} />
           <Route path="/products/:type" element={<Products />} />

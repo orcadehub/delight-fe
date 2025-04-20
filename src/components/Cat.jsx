@@ -43,7 +43,7 @@ const Cat = () => {
 
   return (
     <div className="categories-container">
-      <h1>Shop by Categories</h1>
+      <h1 className="shop">Shop by Categories</h1>
       <div className="categories-grid">
         {categories.map((category) => (
           <div
