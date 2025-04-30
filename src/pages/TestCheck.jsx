@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import config from "../config";
 const Checkout = () => {
   const [amount, setAmount] = useState(100);
-  const history = useHistory();
+  const navigate = useNavigate();
+  const baseURL =
+  import.meta.env.MODE === "development"
+    ? config.LOCAL_BASE_URL
+    : config.BASE_URL;
 
   const handlePayment = async () => {
     try {
-      const res = await axios.post("http://localhost:3002/pay", { amount });
-      // Redirect user to PhonePe checkout page
-      window.location.href = res.data.checkoutUrl;
+      const res = await axios.post(`${baseURL}/pay`, { amount });
+      navigate('/success')
     } catch (err) {
       alert("Payment Failed");
-      history.push("/checkout"); // Redirect back to checkout page
+      navigate("/checkout"); // Redirect back to checkout page
     }
   };
 
