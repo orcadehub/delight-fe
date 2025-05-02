@@ -5,6 +5,14 @@
   margin: auto;
   box-sizing: border-box;
 }
+.dispatch-timer {
+  background-color: #fff3cd;
+  padding: 10px 20px;
+  margin: 20px 0;
+  border-left: 5px solid #ffc107;
+  font-size: 16px;
+  font-weight: 500;
+}
 
 
 .products-container .products-heading {

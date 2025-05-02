@@ -18,6 +18,7 @@ import Checkout from "./pages/CheckOut";
 import Returns from "./pages/Returns";
 import Shipping from "./pages/Shipping";
 import TestCheck from "./pages/TestCheck";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route exact path="/test" element={<TestCheck />} />
           <Route exact path="/contact" element={<Contact />} />
           <Route exact path="/partner" element={<Partner />} />
+          <Route exact path="/product-details" element={<ProductDetails />} />
           <Route exact path="/customise" element={<Customise />} />
           <Route exact path="/track" element={<Track />} />
           <Route exact path="/checkout" element={<Checkout />} />

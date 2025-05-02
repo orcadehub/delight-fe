@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Use useNavigate instead of useHistory
+import { useNavigate } from "react-router-dom"; 
 import "./CheckOut.css";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify"; // Importing toastify
+import "react-toastify/dist/ReactToastify.css"; // Importing the toastify CSS
 
 const Checkout = () => {
   const [address, setAddress] = useState({
@@ -17,7 +19,7 @@ const Checkout = () => {
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
-  const navigate = useNavigate(); // Use useNavigate hook
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("addresses")) || [];
@@ -54,10 +56,13 @@ const Checkout = () => {
   };
 
   const handlePayment = async () => {
-    const selectedAddress =
-      selectedAddressIndex !== null
-        ? savedAddresses[selectedAddressIndex]
-        : address;
+    // Check if an address is selected
+    if (selectedAddressIndex === null) {
+      toast.error("Please select an address before proceeding to payment."); // Show error toast
+      return; // Prevent further execution
+    }
+
+    const selectedAddress = savedAddresses[selectedAddressIndex];
 
     const orderDetails = {
       address: selectedAddress,
@@ -98,10 +103,10 @@ const Checkout = () => {
   };
 
   return (
-    <div className="checkout-container">
-      <div className="left-section">
+    <div className="checkout-page-container">
+      <div className="checkout-left-section">
         <h2>Delivery Address</h2>
-        <div className="form-container">
+        <div className="checkout-form-container">
           <input
             name="name"
             value={address.name}
@@ -138,18 +143,18 @@ const Checkout = () => {
             onChange={handleChange}
             placeholder="ZIP Code"
           />
-          <button className="save-btn" onClick={handleSaveAddress}>
+          <button className="checkout-save-btn" onClick={handleSaveAddress}>
             Save Address
           </button>
         </div>
 
         {savedAddresses.length > 0 && (
-          <div className="saved-addresses">
+          <div className="checkout-saved-addresses">
             <h3>Select Saved Address</h3>
             {savedAddresses.map((addr, idx) => (
               <div
                 key={idx}
-                className={`address-card ${
+                className={`checkout-address-card ${
                   selectedAddressIndex === idx ? "selected" : ""
                 }`}
                 onClick={() => setSelectedAddressIndex(idx)}
@@ -169,10 +174,10 @@ const Checkout = () => {
         )}
       </div>
 
-      <div className="right-summary">
+      <div className="checkout-right-summary">
         <h3>Order Summary</h3>
         {cartItems.map((item, idx) => (
-          <div key={idx} className="order-item">
+          <div key={idx} className="checkout-order-item">
             <span>
               {item.name} x {item.quantity}
             </span>
@@ -180,14 +185,19 @@ const Checkout = () => {
           </div>
         ))}
         <hr />
-        <div className="total">
+        <div className="checkout-total">
           <strong>Total:</strong>
           <span>₹{totalAmount}</span>
         </div>
-        <button className="proceed-btn" onClick={handlePayment}>
+        <button
+          className="checkout-proceed-btn"
+          onClick={handlePayment}
+        >
           Proceed to Payment
         </button>
       </div>
+
+      <ToastContainer /> {/* Toast container for displaying toast messages */}
     </div>
   );
 };

@@ -84,6 +84,11 @@ const Products = () => {
 
   return (
     <div className="products-container">
+      <div className="dispatch-timer">
+        🕑 Place your order before <strong>2:00 PM</strong> to dispatch it on
+        the same day!
+      </div>
+
       <h2 className="products-heading">
         {selectedCategory.replace("-", " ")} Products
       </h2>
@@ -111,7 +116,13 @@ const Products = () => {
             const productId = product._id || product.name;
 
             return (
-              <div className="product-card" key={index}>
+              <div
+                className="product-card"
+                key={index}
+                onClick={() =>
+                  navigate("/product-details", { state: { product } })
+                }
+              >
                 <img
                   src={product.image || Img}
                   alt={product.name}

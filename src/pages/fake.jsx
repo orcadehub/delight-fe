@@ -15,6 +15,7 @@ import Img14 from '../assets/64.jpg';
 import Img15 from '../assets/67.jpg';
 import Img16 from '../assets/69.jpg';
 
+const randomOrders = () => Math.floor(Math.random() * 16) + 15;
 
 const products = [
   {
@@ -25,6 +26,8 @@ const products = [
     category: "putharekulu",
     description: "Traditional sweet with sugar layers, made with love.",
     image: Img9,
+    moreImages: [Img9, Img9, Img9],
+    ordersLastWeek: randomOrders(),
     topSeller: true,
   },
   {
@@ -35,6 +38,8 @@ const products = [
     category: "putharekulu",
     description: "Delightful blend of jaggery and tradition.",
     image: Img8,
+    moreImages: [Img8, Img8, Img8],
+    ordersLastWeek: randomOrders(),
     topSeller: false,
   },
   {
@@ -45,6 +50,8 @@ const products = [
     category: "putharekulu",
     description: "Stuffed with premium dry fruits and sweet sugar.",
     image: Img10,
+    moreImages: [Img10, Img10, Img10],
+    ordersLastWeek: randomOrders(),
     topSeller: true,
   },
   {
@@ -55,6 +62,8 @@ const products = [
     category: "putharekulu",
     description: "Wholesome jaggery with dry fruits inside.",
     image: Img3,
+    moreImages: [Img3, Img3, Img3],
+    ordersLastWeek: randomOrders(),
     topSeller: false,
   },
   {
@@ -65,6 +74,8 @@ const products = [
     category: "putharekulu",
     description: "A chocolaty twist to a traditional treat.",
     image: Img12,
+    moreImages: [Img12, Img12, Img12],
+    ordersLastWeek: randomOrders(),
     topSeller: true,
   },
   {
@@ -75,6 +86,8 @@ const products = [
     category: "putharekulu",
     description: "Malted health with a festive taste.",
     image: Img14,
+    moreImages: [Img14, Img14, Img14],
+    ordersLastWeek: randomOrders(),
     topSeller: false,
   },
   {
@@ -85,6 +98,8 @@ const products = [
     category: "putharekulu",
     description: "Get boosted with our sweet and nutty delight.",
     image: Img13,
+    moreImages: [Img13, Img13, Img13],
+    ordersLastWeek: randomOrders(),
     topSeller: true,
   },
   {
@@ -95,6 +110,8 @@ const products = [
     category: "putharekulu",
     description: "Fusion of Oreo crunch and dry fruits goodness.",
     image: Img15,
+    moreImages: [Img15, Img15, Img15],
+    ordersLastWeek: randomOrders(),
     topSeller: false,
   },
   {
@@ -105,6 +122,8 @@ const products = [
     category: "putharekulu",
     description: "Rich kova wrapped in crunchy sweet layers.",
     image: Img11,
+    moreImages: [Img11, Img11, Img11],
+    ordersLastWeek: randomOrders(),
     topSeller: true,
   },
   {
@@ -115,6 +134,8 @@ const products = [
     category: "putharekulu",
     description: "Sweetened with nature's own nectar and dry fruits.",
     image: Img1,
+    moreImages: [Img1, Img1, Img1],
+    ordersLastWeek: randomOrders(),
     topSeller: false,
   },
   {
@@ -125,6 +146,8 @@ const products = [
     category: "putharekulu",
     description: "Medjool dates meet Andhra’s iconic sweet.",
     image: Img4,
+    moreImages: [Img4, Img4, Img4],
+    ordersLastWeek: randomOrders(),
     topSeller: false,
   },
   {
@@ -135,6 +158,8 @@ const products = [
     category: "putharekulu",
     description: "Unrefined and organic palm jaggery delight.",
     image: Img16,
+    moreImages: [Img16, Img16, Img16],
+    ordersLastWeek: randomOrders(),
     topSeller: false,
   },
   {
@@ -145,6 +170,8 @@ const products = [
     category: "putharekulu",
     description: "Health-conscious version of a festive favorite.",
     image: Img2,
+    moreImages: [Img2, Img2, Img2],
+    ordersLastWeek: randomOrders(),
     topSeller: false,
   },
   {
@@ -155,6 +182,8 @@ const products = [
     category: "jellies",
     description: "Mango jelly with sweetened sugar burst.",
     image: Img7,
+    moreImages: [Img7, Img7, Img7],
+    ordersLastWeek: randomOrders(),
     topSeller: false,
   },
   {
@@ -165,6 +194,8 @@ const products = [
     category: "jellies",
     description: "Mango jelly fused with traditional bellam taste.",
     image: Img5,
+    moreImages: [Img5, Img5, Img5],
+    ordersLastWeek: randomOrders(),
     topSeller: false,
   },
   {
@@ -175,11 +206,11 @@ const products = [
     category: "jellies",
     description: "Rare treat made with thati thandra (palm jelly).",
     image: Img6,
+    moreImages: [Img6, Img6, Img6],
+    ordersLastWeek: randomOrders(),
     topSeller: false,
   },
 ];
-
-
 
 
 export default products;
