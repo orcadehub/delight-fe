@@ -81,9 +81,41 @@ const ProductDetails = () => {
       <div className="right-section">
         <h2 className="product-title">{product.name}</h2>
 
-        <div className="price">
-          <span className="original">₹{originalPrice}</span>
-          <span className="discount">₹{product.price}</span>
+        <div
+          className="price-box"
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <span
+            className="original-price"
+            style={{
+              textDecoration: "line-through",
+              color: "#999",
+              marginRight: "8px",
+              display: "inline-flex",
+              alignItems: "center",
+              fontFamily: "Arial, sans-serif", // Ensure consistent font
+              fontSize: "16px", // Adjust as needed
+              lineHeight: "1", // Prevent extra spacing
+              verticalAlign: "middle", // Fine-tune alignment
+            }}
+          >
+            ₹{originalPrice}
+          </span>
+          <span
+            className="discounted-price"
+            style={{
+              fontWeight: "bold",
+              color: "#e74c3c",
+              display: "inline-flex",
+              alignItems: "center",
+              fontFamily: "Arial, sans-serif", // Match the font
+              fontSize: "16px", // Match the size
+              lineHeight: "1", // Match the line height
+              verticalAlign: "middle", // Fine-tune alignment
+            }}
+          >
+            ₹{product.price}
+          </span>
         </div>
 
         {product.tag && <span className="badge">{product.tag}</span>}

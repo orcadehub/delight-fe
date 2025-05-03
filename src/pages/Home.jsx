@@ -1,28 +1,32 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import CarouselEx from "../components/CarouselEx";
 import "./Home.css";
 import Cat from "../components/Cat";
 import TopSellers from "../components/TopSellers";
-import Customise from "../assets/customise.png"; // Import the image
+import Customise from "../assets/customise.png";
 import InstagramEmbed from "../components/InstagramEmbed";
 import Combo from "../components/Combo";
 
 const Home = () => {
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
 
   return (
     <div className="home-container">
       <CarouselEx />
 
       {/* Customise Section */}
-      <div className="customise-image-wrapper">
-        <img
-          src={Customise}
-          alt="Customise Your Box"
-          className="customise-image"
-          onClick={() => navigate("/customise")} // Navigate on click
-        />
+      <div className="content-wrapper">
+        <h1>Customise Your Box</h1>
+        <p className="selection-text">
+          Select any 10 types of putharekulu and add it in the box
+        </p>
+        <button
+          className="customise-btn"
+          onClick={() => navigate("/customise")}
+        >
+          Click here to customise
+        </button>
       </div>
 
       {/* Categories */}
@@ -59,6 +63,23 @@ const Home = () => {
 
       {/* insta videos */}
       <InstagramEmbed />
+
+      {/* Newsletter */}
+      <div className="newsletter-container">
+        <h2 className="newsletter-heading">Subscribe to Our Newsletter</h2>
+        <p className="newsletter-text">Stay updated with latest offers & new arrivals</p>
+        <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="newsletter-input"
+            required
+          />
+          <button type="submit" className="newsletter-button">
+            Subscribe
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

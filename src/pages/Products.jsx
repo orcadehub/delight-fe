@@ -8,7 +8,7 @@ import allProducts from "./fake"; // Import your mock product array
 const Products = () => {
   const { type } = useParams();
   const navigate = useNavigate();
-  const categories = ["putharekulu", "jellies", "combo"];
+  const categories = ["putharekulu", "jellies", "combos"];
 
   const [selectedCategory, setSelectedCategory] = useState(
     type || "putharekulu"
@@ -135,20 +135,38 @@ const Products = () => {
 
                 <h4 className="product-name">{product.name}</h4>
 
-                <div className="price-box">
+                <div
+                  className="price-box"
+                  style={{ display: "flex", alignItems: "center" }}
+                >
                   <span
                     className="original-price"
                     style={{
                       textDecoration: "line-through",
                       color: "#999",
                       marginRight: "8px",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      fontFamily: "Arial, sans-serif", // Ensure consistent font
+                      fontSize: "16px", // Adjust as needed
+                      lineHeight: "1", // Prevent extra spacing
+                      verticalAlign: "middle", // Fine-tune alignment
                     }}
                   >
                     ₹{originalPrice}
                   </span>
                   <span
                     className="discounted-price"
-                    style={{ fontWeight: "bold", color: "#e74c3c" }}
+                    style={{
+                      fontWeight: "bold",
+                      color: "#e74c3c",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      fontFamily: "Arial, sans-serif", // Match the font
+                      fontSize: "16px", // Match the size
+                      lineHeight: "1", // Match the line height
+                      verticalAlign: "middle", // Fine-tune alignment
+                    }}
                   >
                     ₹{product.price}
                   </span>
@@ -156,7 +174,7 @@ const Products = () => {
 
                 {product.ordersLastWeek && (
                   <p className="orders-info">
-                    🔄 {product.ordersLastWeek}+ orders placed last week
+                    {product.ordersLastWeek}+ orders placed last week
                   </p>
                 )}
 

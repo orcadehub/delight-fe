@@ -1,25 +1,24 @@
 .instagram-embed-wrapper {
-    padding: 2rem;
-    text-align: center;
-    background: #fefefe;
-  }
-  
-  .embed-title {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .iframe-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
-  }
-  
-  .insta-iframe {
-    width: 340px;
-    height: 600px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  
+  padding: 2rem;
+  text-align: center;
+  background: #fefefe;
+}
+
+.embed-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.iframe-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.insta-iframe {
+  width: 340px;
+  height: 600px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}

@@ -118,3 +118,56 @@
   line-height: 1.8;
   color: #333;
 }
+
+.newsletter-container {
+  margin: 50px auto;
+  padding: 40px 20px;
+  background-color: #fbeee6;
+  text-align: center;
+  border-radius: 12px;
+  max-width: 1000px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.newsletter-heading {
+  font-size: 28px;
+  color: #d35400;
+  margin-bottom: 10px;
+}
+
+.newsletter-text {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.newsletter-input {
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 350px;
+  font-size: 16px;
+}
+
+.newsletter-button {
+  padding: 12px 24px;
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.newsletter-button:hover {
+  background-color: #cf711f;
+}
