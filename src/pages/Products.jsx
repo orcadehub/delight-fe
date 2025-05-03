@@ -1,207 +1,148 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import "./Products.css";
-import Img from "../assets/top1.webp";
-import { toast } from "react-toastify";
-import allProducts from "./fake"; // Import your mock product array
+import { useNavigate } from "react-router-dom";
+import "./Cart.css";
 
-const Products = () => {
-  const { type } = useParams();
+const Cart = () => {
   const navigate = useNavigate();
-  const categories = ["putharekulu", "jellies", "combos"];
-
-  const [selectedCategory, setSelectedCategory] = useState(
-    type || "putharekulu"
-  );
-  const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    try {
+      const storedCart = localStorage.getItem("cart");
+      const parsedCart = storedCart ? JSON.parse(storedCart) : [];
+      return parsedCart.map((item) => ({
+        ...item,
+        quantity: item.quantity || 1,
+        originalPrice: item.originalPrice || item.price * 1.25,
+      }));
+    } catch (err) {
+      console.error("Error reading cart from localStorage", err);
+      return [];
+    }
+  });
 
   useEffect(() => {
-    setSelectedCategory(type || "putharekulu");
-  }, [type]);
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [cartItems]);
 
-  useEffect(() => {
-    const filtered = allProducts.filter(
-      (product) => product.category === selectedCategory
+  const incrementQty = (id) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
     );
-    setProducts(filtered);
-  }, [selectedCategory]);
-
-  useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCart(storedCart);
-  }, []);
-
-  const updateCartStorage = (updatedCart) => {
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-    setCart(updatedCart);
   };
 
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-    navigate(`/products/${category}`);
+  const decrementQty = (id) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
   };
 
-  const handleAddToCart = (product) => {
-    const token = localStorage.getItem("token"); // or sessionStorage.getItem("token")
-
-    if (!token) {
-      toast.warning("Please login to add items to your cart!");
-      navigate("/login");
-      return;
-    }
-
-    const updatedCart = [...cart, product];
-    updateCartStorage(updatedCart);
-    toast.success("Product added to cart!");
+  const removeItem = (id) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
-  const handleRemoveFromCart = (productId) => {
-    const token = localStorage.getItem("token"); // or sessionStorage.getItem("token")
-
-    if (!token) {
-      toast.warning("Please login to remove items from your cart!");
-      navigate("/login");
-      return;
-    }
-
-    const updatedCart = cart.filter((item) => {
-      const itemId = item._id || item.name;
-      return itemId !== productId;
-    });
-
-    updateCartStorage(updatedCart);
-    toast.info("Product removed from cart");
-  };
-
-  const isInCart = (product) => {
-    const productId = product._id || product.name;
-    return cart.some((item) => {
-      const itemId = item._id || item.name;
-      return itemId === productId;
-    });
+  const calculateTotal = () => {
+    return cartItems
+      .reduce((total, item) => total + item.price * item.quantity, 0)
+      .toFixed(2);
   };
 
   return (
-    <div className="products-container">
-      <div className="dispatch-timer">
-        🕑 Place your order before <strong>2:00 PM</strong> to dispatch it on
-        the same day!
-      </div>
-
-      <h2 className="products-heading">
-        {selectedCategory.replace("-", " ")} Products
-      </h2>
-
-      <div className="category-buttons">
-        {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => handleCategoryClick(category)}
-            className={`category-button ${
-              selectedCategory === category ? "active" : ""
-            }`}
-          >
-            {category.replace("-", " ")}
-          </button>
-        ))}
-      </div>
-
-      <div className="products-grid">
-        {products.length === 0 ? (
-          <p className="text-primary">No products found in this category.</p>
-        ) : (
-          products.map((product, index) => {
-            const originalPrice = Math.round(product.price * 1.2);
-            const productId = product._id || product.name;
-
-            return (
-              <div
-                className="product-card"
-                key={index}
-                onClick={() =>
-                  navigate("/product-details", { state: { product } })
-                }
-              >
-                <img
-                  src={product.image || Img}
-                  alt={product.name}
-                  className="product-image"
-                />
-
-                {product.tag && (
-                  <span className="product-badge">{product.tag}</span>
-                )}
-
-                <h4 className="product-name">{product.name}</h4>
-
+    <div className="cart-container">
+      <h1>Your Cart</h1>
+      {cartItems.length === 0 ? (
+        <p className="empty-cart">Your cart is empty</p>
+      ) : (
+        <div className="cart-items">
+          {cartItems.map((item) => (
+            <div key={item.id} className="cart-item">
+              <img
+                src={item.image || "https://via.placeholder.com/120"}
+                alt={item.name}
+                className="cart-item-image"
+              />
+              <div className="cart-item-name">{item.name}</div>
+              <div className="cart-item-quantity">
+                <button onClick={() => decrementQty(item.id)}>-</button>
+                <span>{item.quantity}</span>
+                <button onClick={() => incrementQty(item.id)}>+</button>
+              </div>
+              <div className="cart-item-subtotal">
                 <div
-                  className="price-box"
-                  style={{ display: "flex", alignItems: "center" }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
                 >
                   <span
-                    className="original-price"
                     style={{
                       textDecoration: "line-through",
                       color: "#999",
-                      marginRight: "8px",
-                      display: "inline-flex",
+                      fontFamily: "Arial, sans-serif",
+                      fontSize: "16px",
+                      display: "flex",
                       alignItems: "center",
-                      fontFamily: "Arial, sans-serif", // Ensure consistent font
-                      fontSize: "16px", // Adjust as needed
-                      lineHeight: "1", // Prevent extra spacing
-                      verticalAlign: "middle", // Fine-tune alignment
                     }}
                   >
-                    ₹{originalPrice}
+                    ₹{(item.originalPrice * item.quantity).toFixed(2)}
                   </span>
                   <span
-                    className="discounted-price"
                     style={{
                       fontWeight: "bold",
                       color: "#e74c3c",
-                      display: "inline-flex",
+                      fontFamily: "Arial, sans-serif",
+                      fontSize: "16px",
+                      display: "flex",
                       alignItems: "center",
-                      fontFamily: "Arial, sans-serif", // Match the font
-                      fontSize: "16px", // Match the size
-                      lineHeight: "1", // Match the line height
-                      verticalAlign: "middle", // Fine-tune alignment
                     }}
                   >
-                    ₹{product.price}
+                    ₹{(item.price * item.quantity).toFixed(2)}
                   </span>
                 </div>
-
-                {product.ordersLastWeek && (
-                  <p className="orders-info">
-                    {product.ordersLastWeek}+ orders placed last week
-                  </p>
-                )}
-
-                {isInCart(product) ? (
-                  <button
-                    className="buy-now-btn"
-                    style={{ backgroundColor: "#c0392b" }}
-                    onClick={() => handleRemoveFromCart(productId)}
-                  >
-                    <i className="fa-solid fa-cart-shopping fa-l me-2"></i>
-                    Remove
-                  </button>
-                ) : (
-                  <button
-                    className="buy-now-btn"
-                    onClick={() => handleAddToCart(product)}
-                  >
-                    <i className="fa-solid fa-cart-shopping fa-l me-2"></i>Add
-                  </button>
-                )}
               </div>
-            );
-          })
-        )}
-      </div>
+              <div className="cart-item-remove">
+                <button
+                  onClick={() => removeItem(item.id)}
+                  className="remove-btn"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+          ))}
+          <div className="cart-total">
+            <h2>
+              Total:{" "}
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  fontWeight: "bold",
+                  fontFamily: "Arial, sans-serif",
+                  fontSize: "18px",
+                  color: "#e74c3c",
+                }}
+              >
+                ₹{calculateTotal()}
+              </span>
+            </h2>
+            <button
+              className="checkout-btn"
+              onClick={() => navigate("/checkout")}
+            >
+              Proceed to Checkout
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export default Products;
+export default Cart;

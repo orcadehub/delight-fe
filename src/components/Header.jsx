@@ -18,7 +18,7 @@ const Header = () => {
     if (userData) {
       setUser(JSON.parse(userData));
     }
-
+    // alert(userData)
     updateCartCount(); // Initial cart count
   }, []);
   const closeNavbar = () => {

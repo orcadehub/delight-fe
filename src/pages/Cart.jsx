@@ -11,6 +11,7 @@ const Cart = () => {
       return parsedCart.map((item) => ({
         ...item,
         quantity: item.quantity || 1,
+        originalPrice: item.originalPrice || item.price * 1.25, // Assuming 25% discount
       }));
     } catch (err) {
       console.error("Error reading cart from localStorage", err);
@@ -22,26 +23,26 @@ const Cart = () => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const incrementQty = (name) => {
+  const incrementQty = (id) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.name === name ? { ...item, quantity: item.quantity + 1 } : item
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
 
-  const decrementQty = (name) => {
+  const decrementQty = (id) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.name === name && item.quantity > 1
+        item.id === id && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
     );
   };
 
-  const removeItem = (name) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.name !== name));
+  const removeItem = (id) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
   const calculateTotal = () => {
@@ -57,24 +58,36 @@ const Cart = () => {
         <p className="empty-cart">Your cart is empty</p>
       ) : (
         <div className="cart-items">
-          {cartItems.map((item, index) => (
-            <div key={`${item.name}-${index}`} className="cart-item">
+          {cartItems.map((item) => (
+            <div key={item.id} className="cart-item">
               <img
                 src={item.image || "https://via.placeholder.com/120"}
                 alt={item.name}
                 className="cart-item-image"
               />
-              <div className="cart-item-details">
-                <h3>{item.name}</h3>
-                <p>Price: ₹{item.price.toFixed(2)}</p>
-                <div className="quantity-controls">
-                  <button onClick={() => decrementQty(item.name)}>-</button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => incrementQty(item.name)}>+</button>
-                </div>
-                <p>Subtotal: ₹{(item.price * item.quantity).toFixed(2)}</p>
+              <div className="cart-item-name">{item.name}</div>
+              <div className="cart-item-quantity">
+                <button onClick={() => decrementQty(item.id)}>-</button>
+                <span>{item.quantity}</span>
+                <button onClick={() => incrementQty(item.id)}>+</button>
+              </div>
+              <div className="cart-item-subtotal">
+                <span
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    fontWeight: "bold",
+                    fontFamily: "Arial, sans-serif",
+                    fontSize: "18px",
+                  }}
+                >
+                  ₹{(item.price * item.quantity).toFixed(2)}
+                </span>
+              </div>
+              <div className="cart-item-remove">
                 <button
-                  onClick={() => removeItem(item.name)}
+                  onClick={() => removeItem(item.id)}
                   className="remove-btn"
                 >
                   Remove
@@ -83,8 +96,22 @@ const Cart = () => {
             </div>
           ))}
           <div className="cart-total">
-            <h2>Total: ₹{calculateTotal()}</h2>
-            <button className="checkout-btn" onClick={() => navigate("/checkout")}>
+            <h2
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                fontWeight: "bold",
+                fontFamily: "Arial, sans-serif",
+                // fontSize: "18px",
+              }}
+            >
+              Total: ₹{calculateTotal()}
+            </h2>
+            <button
+              className="checkout-btn"
+              onClick={() => navigate("/checkout")}
+            >
               Proceed to Checkout
             </button>
           </div>

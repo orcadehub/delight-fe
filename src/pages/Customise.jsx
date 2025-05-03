@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "./Customise.css";
-import Cat1 from "../assets/cat1.webp";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import products from "./fake";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import config from "../config";
 
 const Customise = () => {
   const [selectedProducts, setSelectedProducts] = useState({});
+  const [totalAmount, setTotalAmount] = useState(0);
+  const navigate = useNavigate();
+
+  const baseURL =
+  import.meta.env.MODE === "development"
+    ? config.LOCAL_BASE_URL
+    : config.BASE_URL;
 
   const putharekuluProducts = products.filter(
     (p) => p.category === "putharekulu"
@@ -18,7 +27,6 @@ const Customise = () => {
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
-        // Convert keys to numbers if they were stored as strings
         const updated = {};
         Object.keys(parsed).forEach((key) => {
           updated[parseInt(key)] = parsed[key];
@@ -33,6 +41,7 @@ const Customise = () => {
   // Store to localStorage when selectedProducts changes
   useEffect(() => {
     localStorage.setItem("selectedProducts", JSON.stringify(selectedProducts));
+    setTotalAmount(getTotalPrice());
   }, [selectedProducts]);
 
   const getTotalSelected = () =>
@@ -84,6 +93,49 @@ const Customise = () => {
       return total + (product.price / 10) * selectedProducts[productId];
     }, 0);
 
+  const handlePayment = async () => {
+    // Check if exactly 10 items are selected
+    if (getTotalSelected() !== 10) {
+      toast.error("Please select exactly 10 products before proceeding.");
+      return;
+    }
+
+    // Create order details
+    const orderDetails = {
+      cartItems: selectedProducts,
+      total: totalAmount,
+      paymentMode: "PhonePe",
+      date: new Date().toLocaleString(),
+      transactionId: "T" + Date.now(),
+    };
+
+    localStorage.setItem("order", JSON.stringify(orderDetails));
+
+    try {
+      // Call the payment API directly
+      const response = await axios.post(`${baseURL}/pay`, {
+        amount: Math.round(totalAmount * 100), // Convert to paise
+      });
+
+      // Handle the response based on payment status
+      if (response.data.paymentStatus === "success") {
+        toast.success("Payment successful!");
+        navigate("/success");  // Redirect to success page after payment
+      } else {
+        toast.error("Payment failed. Please try again.");
+        // Do not navigate yet; stay on the current page to retry payment
+      }
+
+      if (response.data.checkoutUrl) {
+        // Directly navigate to the payment gateway URL
+        window.location.href = response.data.checkoutUrl;
+      }
+    } catch (error) {
+      console.error("Payment Error:", error);
+      toast.error("Payment Failed. Please try again.");
+    }
+  };
+
   return (
     <div className="customise-container">
       <div className="product-list">
@@ -115,13 +167,17 @@ const Customise = () => {
             return (
               <li key={product.id}>
                 {product.name} (x{selectedProducts[product.id]}) - ₹
-                {(product.price / 10) * selectedProducts[product.id]}
+                {(product.price / 10) * selectedProducts[productId]}
               </li>
             );
           })}
         </ul>
-        <h3>Total: ₹{getTotalPrice()}</h3>
-        <button className="buy-now" disabled={getTotalSelected() !== 10}>
+        <h3>Total: ₹{totalAmount}</h3>
+        <button
+          className="buy-now"
+          onClick={handlePayment}
+          disabled={getTotalSelected() !== 10}
+        >
           {getTotalSelected() === 10
             ? "Proceed to Checkout"
             : "Select 10 to Buy"}

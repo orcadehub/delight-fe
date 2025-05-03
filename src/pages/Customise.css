@@ -42,7 +42,7 @@ html, body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   text-align: center;
   transition: transform 0.2s ease;
-  padding: 0; /* Padding removed */
+  padding: 5px 5px 10px 5px; /* Padding removed */
 }
 
 .product-card:hover {

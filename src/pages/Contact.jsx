@@ -7,17 +7,8 @@ const Contact = () => {
       <div className="container text-center">
         <h2 className="contact-title">Contact Us</h2>
         <p className="contact-subtitle">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-          tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+          Have questions or want to place an order? Reach out to us for the best traditional sweets from Atreyapuram.
         </p>
-
-        {/* Logo Row */}
-        {/* <div className="logo-row">
-          <img src="https://via.placeholder.com/100x40?text=Logo1" alt="Logo1" />
-          <img src="https://via.placeholder.com/100x40?text=Logo2" alt="Logo2" />
-          <img src="https://via.placeholder.com/100x40?text=Logo3" alt="Logo3" />
-          <img src="https://via.placeholder.com/100x40?text=Logo4" alt="Logo4" />
-        </div> */}
 
         {/* Form & Newsletter */}
         <div className="form-section">
@@ -26,40 +17,39 @@ const Contact = () => {
             <input type="text" placeholder="Phone" />
             <input type="text" placeholder="Name" />
             <textarea placeholder="Message" rows="4"></textarea>
-            <button className="submit-btn">Submit Button</button>
+            <button className="submit-btn">Submit</button>
           </div>
           <div className="form-right">
-            <h5>Our Newsletters</h5>
+            <h5>Subscribe to Our Newsletter</h5>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-              tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+              Stay updated on new varieties, discounts, and special festive collections from 90’s Delight.
             </p>
-            <input type="email" placeholder="Email" />
-            <button className="submit-btn dark">Submit Button</button>
+            <input type="email" placeholder="Enter your email" />
+            <button className="submit-btn dark">Subscribe</button>
           </div>
         </div>
 
         {/* Contact Info */}
         <div className="info-cards">
           <div className="info-card">
-            <h6>(+876) 765 665</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus luctus.</p>
+            <h6>+91 93919 29099</h6>
+            <p>Call us to know more about our traditional sweet offerings and customized gift packages.</p>
           </div>
           <div className="info-card">
-            <h6>mail@influenca.id</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus luctus.</p>
+            <h6>contact@90sdelight.in</h6>
+            <p>Email us for bulk orders, collaborations, or franchise opportunities.</p>
           </div>
           <div className="info-card">
-            <h6>London Eye London</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus luctus.</p>
+            <h6>Atreyapuram, Andhra Pradesh</h6>
+            <p>Home of authentic Putharekulu — handcrafted and delivered fresh to your doorstep.</p>
           </div>
         </div>
 
         {/* Map */}
         <div className="map-container">
           <iframe
-            title="Google Map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19858.09331452803!2d-0.12464081028700574!3d51.503324543453526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604b7252872c1%3A0xf13e12aaec0f9bd2!2sLondon%20Eye!5e0!3m2!1sen!2sin!4v1616161616161!5m2!1sen!2sin"
+            title="Atreyapuram Map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3821.123951957001!2d81.79558951488967!3d16.82124622261681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37aabbbdb5bd5f%3A0xb6480a1f15c3fc58!2sAtreyapuram%2C%20Andhra%20Pradesh%20533848!5e0!3m2!1sen!2sin!4v1714729920012!5m2!1sen!2sin"
             width="100%"
             height="300"
             allowFullScreen=""

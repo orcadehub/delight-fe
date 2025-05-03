@@ -2,78 +2,38 @@ import React from 'react';
 import './Marque.css';
 
 const Marque = () => {
-  // WhatsApp URL with the phone number and pre-filled message
   const whatsappUrl = "https://wa.me/919391929099?text=Hello%20I%27m%20interested%20in%20international%20orders";
+
+  const messages = [
+    "⭐ For International Orders Click Me ⭐",
+    "⭐ Deliver in 2 days ⭐",
+    "⭐ For International Orders Click Me ⭐",
+    "⭐ Deliver in 2 days ⭐",
+    "⭐ For International Orders Click Me ⭐",
+    "⭐ Deliver in 2 days ⭐",
+    "⭐ For International Orders Click Me ⭐",
+    "⭐ Deliver in 2 days ⭐",
+    "⭐ For International Orders Click Me ⭐",
+    "⭐ Deliver in 2 days ⭐",
+    "⭐ For International Orders Click Me ⭐"
+  ];
 
   return (
     <div className="marquee-container">
       <div className="marquee">
-        <button 
-          className="marquee-btn mx-5"
-          onClick={() => window.open(whatsappUrl, '_blank')}
-        >
-          ⭐ For International Orders Click Me ⭐
-        </button>
-        <button 
-          className="marquee-btn mx-5"
-          onClick={() => window.open(whatsappUrl, '_blank')}
-        >
-          ⭐ Deliver in 2 days ⭐
-        </button>
-        <button 
-          className="marquee-btn mx-5"
-          onClick={() => window.open(whatsappUrl, '_blank')}
-        >
-          ⭐ For International Orders Click Me ⭐
-        </button>
-        <button 
-          className="marquee-btn mx-5"
-          onClick={() => window.open(whatsappUrl, '_blank')}
-        >
-         ⭐ Deliver in 2 days ⭐
-        </button>
-        <button 
-          className="marquee-btn mx-5"
-          onClick={() => window.open(whatsappUrl, '_blank')}
-        >
-          ⭐ For International Orders Click Me ⭐
-        </button>
-        <button 
-          className="marquee-btn mx-5"
-          onClick={() => window.open(whatsappUrl, '_blank')}
-        >
-          ⭐ Deliver in 2 days ⭐
-        </button>
-        <button 
-          className="marquee-btn mx-5"
-          onClick={() => window.open(whatsappUrl, '_blank')}
-        >
-          ⭐ For International Orders Click Me ⭐
-        </button>
-        <button 
-          className="marquee-btn mx-5"
-          onClick={() => window.open(whatsappUrl, '_blank')}
-        >
-          ⭐ Deliver in 2 days ⭐
-        </button>
-        <button 
-          className="marquee-btn mx-5"
-          onClick={() => window.open(whatsappUrl, '_blank')}
-        >
-          ⭐ For International Orders Click Me ⭐
-        </button>
-        <button 
-          className="marquee-btn mx-5"
-          onClick={() => window.open(whatsappUrl, '_blank')}
-        >
-         ⭐ Deliver in 2 days ⭐
-        </button>
-        <button 
-          className="marquee-btn mx-5"
-          onClick={() => window.open(whatsappUrl, '_blank')}
-        >
-          ⭐ For International Orders Click Me ⭐
-        </button>
+        {messages.map((msg, index) => (
+          <button
+            key={index}
+            className="marquee-btn mx-5"
+            onClick={() => {
+              if (msg.includes("International Orders")) {
+                window.open(whatsappUrl, '_blank');
+              }
+            }}
+          >
+            {msg}
+          </button>
+        ))}
       </div>
     </div>
   );

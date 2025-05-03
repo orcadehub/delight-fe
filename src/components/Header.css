@@ -35,16 +35,23 @@
 .brand-container {
     display: flex;
     align-items: center;
+    text-decoration: none;
     gap: 5px; /* Reduced space between logo & text */
 
 }
 
+.brand-container{
+    text-decoration: none;
+}
 .mobile-brand-text {
     font-size: 25px;
     font-weight: bold;
     color: #017173; 
+    text-decoration: none;
 }
-
+.mobile-brand-text:hover{
+    text-decoration: none;
+}
 /* Header Alignment */
 .header {
     display: flex;
@@ -81,7 +88,7 @@
     width: 0;
     text-decoration: none;
     height: 2px;
-    bottom: 0;
+    bottom: 15%;
     left: 0;
     background-color: #017173;
     transition: width 0.3s ease;
@@ -116,6 +123,7 @@
 .dropdown-menu {
     background-color: #017173 !important;
     border: none;
+    
 }
 .user-dropdown-title {
     display: inline-flex;
@@ -124,16 +132,7 @@
   }
   
 
-.dropdown-item {
-    color: white !important;
-    font-size: 16px;
-    transition: all 0.3s ease;
-}
 
-.dropdown-item:hover {
-    color: #e0f7f7 !important;
-    background-color: rgba(255, 255, 255, 0.1);
-}
 
 /* Cart Button Styling */
 .btn.position-relative {

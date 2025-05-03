@@ -14,7 +14,7 @@
 }
 
 .ts-container h1 {
-  text-align: center;
+  text-align: center; /* Center the heading */
   color: #333;
   margin-bottom: 40px;
   font-size: 2.5rem;
@@ -40,6 +40,7 @@
   width: fit-content;
   max-width: 100%;
   transition: transform 0.3s ease-out;
+  padding-right: 20px; /* Ensure there's space for the View More link */
 }
 
 .ts-products-track > * {
@@ -62,6 +63,31 @@
   word-wrap: break-word;
   margin: 0 auto;
 }
+
+.ts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.ts-header h1 {
+  text-align: center; /* Center the header text */
+  width: 100%;
+}
+
+.ts-view-more {
+  font-size: 14px;
+  color: #2980b9;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.ts-view-more:hover {
+  color: #1c5980;
+}
+
 .ts-card p {
   display: inline-flex;
   align-items: center;
@@ -73,6 +99,7 @@
   width: 100%; /* Ensure the <p> takes full width of the card for centering */
   text-align: center; /* Center the inline-flex container within the <p> */
 }
+
 .ts-card:hover {
   transform: scale(1.05);
 }
@@ -140,6 +167,11 @@
     object-fit: cover;
     width: 100%;
   }
+
+  .ts-view-more {
+    font-size: 12px; /* Decrease font size for tablets and small screens */
+    white-space: nowrap; /* Prevent text from wrapping */
+  }
 }
 
 @media (max-width: 576px) {
@@ -166,5 +198,9 @@
   .ts-products-track {
     gap: 10px;
   }
-}
 
+  .ts-view-more {
+    font-size: 12px; /* Further decrease font size on smaller screens */
+    white-space: nowrap; /* Prevent wrapping on very small screens */
+  }
+}

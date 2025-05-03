@@ -185,13 +185,27 @@ const Checkout = () => {
             <span>
               {item.name} x {item.quantity}
             </span>
-            <span>₹{(item.price * item.quantity).toFixed(2)}</span>
+            <span style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  fontWeight: "bold",
+                  fontFamily: "Arial, sans-serif",
+                 
+                }}>₹{(item.price * item.quantity).toFixed(2)}</span>
           </div>
         ))}
         <hr />
         <div className="checkout-total">
           <strong>Total:</strong>
-          <span>₹{totalAmount}</span>
+          <span style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  fontWeight: "bold",
+                  fontFamily: "Arial, sans-serif",
+                
+                }}>₹{totalAmount}</span>
         </div>
         <button
           className="checkout-proceed-btn"
