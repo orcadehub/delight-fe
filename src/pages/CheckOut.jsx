@@ -4,7 +4,7 @@ import "./CheckOut.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify"; // Importing toastify
 import "react-toastify/dist/ReactToastify.css"; // Importing the toastify CSS
-
+import config from "../config";
 const Checkout = () => {
   const [address, setAddress] = useState({
     name: "",
@@ -14,6 +14,10 @@ const Checkout = () => {
     state: "",
     zip: "",
   });
+  const baseURL =
+  import.meta.env.MODE === "development"
+    ? config.LOCAL_BASE_URL
+    : config.BASE_URL;
 
   const [savedAddresses, setSavedAddresses] = useState([]);
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
@@ -79,7 +83,7 @@ const Checkout = () => {
     localStorage.setItem("order", JSON.stringify(orderDetails));
 
     try {
-      const response = await axios.post("http://localhost:3002/pay", {
+      const response = await axios.post(`${baseURL}/pay`, {
         amount: Math.round(parseFloat(totalAmount) * 100),
       });
 
